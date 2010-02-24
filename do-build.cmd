@@ -6,5 +6,6 @@ call install.cmd %2 0 ../../Boost
 popd
 
 FOR %%d IN (debug debug-mfc release release-mfc) DO (
+    rmdir /s /q %1\dist
     call %1\%3\compile.cmd all %%d toolset=msvc
 )
