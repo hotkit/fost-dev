@@ -42,7 +42,7 @@ def install_boost(directory, version):
     """
     if not is_windows() and version != 'karmic':
         if not os.path.isdir('%s/Boost/1_%s_0' % (directory, version)):
-            os.symlink('Boost/1_%s_0' % v, '%s/Boost/1_%s_0' % (directory, version))
+            os.symlink('../../Boost/1_%s_0' % version, '%s/Boost/1_%s_0' % (directory, version))
         if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, version)):
             execute('%s/Boost/build' % directory, version, 0)
     if is_windows():
