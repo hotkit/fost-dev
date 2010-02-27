@@ -3,7 +3,7 @@ cd `dirname $0`
 
 for S in "" -rc
 do
-    for T in fost-base fost-internet fost-orm fost-postgres fost-py fost-meta
+    for T in fost-base fost-internet fost-aws fost-orm fost-py fost-meta fost-postgres
     do
         for B in 37 38 39 40 41 42
         do
