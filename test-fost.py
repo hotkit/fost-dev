@@ -49,16 +49,20 @@ for project, configuration in PROJECTS.items():
                 if not install_boost(directory, boost):
                     raise "Boost install failed"
                 else:
-                    built += 1
-                    if not execute('%s/%s/compile' % (directory, project)):
-                        failure.append([project, suffix, boost])
-                    else:
-                        success.append([project, suffix, boost])
+                    for variant in configuration.get('variants', VARIANTS):
+                        built += 1
+                        if not execute(
+                            '%s/%s/compile' % (directory, project), variant
+                        ):
+                            failure.append([project, suffix, boost, variant])
+                        else:
+                            success.append([project, suffix, boost, variant])
         else:
             raise "svn up failed"
 
-for project, suffix, boost in success:
-    print "Success", project + suffix, "Boost", boost
-for project, suffix, boost in failure:
-    print "Failure", project + suffix, "Boost", boost
+def status(k, l):
+    for project, suffix, boost, variant in l:
+        print k, project + suffix, "Boost", boost, "Variant:", variant
+status("Success", success)
+status("Failure", falure)
 print "Total built", built, "Total success", len(success)
