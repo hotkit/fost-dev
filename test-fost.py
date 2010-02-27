@@ -39,12 +39,12 @@ def install_boost(directory, version):
         Installs the right version of Boost for the platform.
     """
     if not is_windows() and version != ['karmic']:
-        version = version[0]
-        if not os.path.isdir('%s/Boost/1_%s_0' % (directory, version)):
-            sys.symlink('Boost/1_%s_0' % version, '%s/Boost/1_%s_0' % (directory, version))
-        if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, version)):
+        v = version[0]
+        if not os.path.isdir('%s/Boost/1_%s_0' % (directory, v)):
+            os.symlink('Boost/1_%s_0' % v, '%s/Boost/1_%s_0' % (directory, v))
+        if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, v)):
             execute('%s/Boost/build', *version)
-    return execute('%s/Boost/install' % directory, *boost)
+    return execute('%s/Boost/install' % directory, *version)
 
 
 built, success, failure = 0, [], []
