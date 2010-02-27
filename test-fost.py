@@ -2,20 +2,7 @@
 # -*- coding: utf-8 -*-
 import os, sys
 
-
-PROJECTS = {
-    'fost-aws': {},
-    'fost-base': dict(
-        suffixes = ['', '-rc', '-stable']
-    ),
-    'fost-internet': {},
-    'fost-meta': {},
-    'fost-orm': {},
-    'fost-postgres': {},
-    'fost-py': {},
-}
-SUFFIXES = ['', '-rc']
-BOOST_VERSIONS = list(range(38, 43))
+from configuration import *
 if sys.platform == 'linux2':
     BOOST_VERSIONS.append('karmic')
 
@@ -52,22 +39,21 @@ def install_boost(directory, version):
 
 
 built, success, failure = 0, [], []
-if execute('svn', 'up', '--ignore-externals'):
-    for project, configuration in PROJECTS.items():
-        for suffix in configuration.get('suffixes', SUFFIXES):
-            directory = '%s%s' % (project, suffix)
-            if execute('svn', 'up', directory):
-                for boost in configuration.get('boost', BOOST_VERSIONS):
-                    if not install_boost(directory, boost):
-                        raise "Boost install failed"
+for project, configuration in PROJECTS.items():
+    for suffix in configuration.get('suffixes', SUFFIXES):
+        directory = '%s%s' % (project, suffix)
+        if execute('svn', 'up', directory):
+            for boost in configuration.get('boost', BOOST_VERSIONS):
+                if not install_boost(directory, boost):
+                    raise "Boost install failed"
+                else:
+                    built += 1
+                    if not execute('%s/%s/compile' % (directory, project)):
+                        failure.append([project, suffix, boost])
                     else:
-                        built += 1
-                        if not execute('%s/%s/compile' % (directory, project)):
-                            failure.append([project, suffix, boost])
-                        else:
-                            success.append([project, suffix, boost])
-            else:
-                raise "svn up failed"
+                        success.append([project, suffix, boost])
+        else:
+            raise "svn up failed"
 
 for project, suffix, boost in success:
     print "Success", project + suffix, "Boost", boost

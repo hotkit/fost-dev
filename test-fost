@@ -1,40 +1,5 @@
 #!/bin/bash
 cd `dirname $0`
+svn up --ignore-externals
 
-for S in "" -rc
-do
-    for T in fost-base fost-internet fost-aws fost-orm fost-py fost-meta fost-postgres
-    do
-        for B in 37 38 39 40 41 42
-        do
-            echo Starting ${T}${S} with Boost 1.${B}
-
-            if test ! -e ${T}${S}/Boost/1_${B}_0
-            then {
-                cd ${T}${S}/Boost
-                ln -s ../../Boost/1_${B}_0
-                cd ../..
-            }
-            fi
-
-            if test ! -e ${T}${S}/Boost/boost/include/boost-1_$B
-            then {
-                ${T}${S}/Boost/build $B
-            }
-            fi
-
-            if ${T}${S}/Boost/install $B 0 && \
-                rm -rf ${T}${S}/dist && \
-                ${T}${S}/${T}/compile all debug && \
-                rm -rf ${T}${S}/dist && \
-                ${T}${S}/${T}/compile all release
-            then {
-                echo OK ${T}${S} with Boost 1.$B.0
-            } else {
-                echo FAILED ${T}${S} with Boost 1.$B.0
-                exit 1
-            }
-            fi
-        done
-    done
-done
+time ./test-fost.py $*
