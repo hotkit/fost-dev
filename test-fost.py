@@ -17,7 +17,7 @@ PROJECTS = {
 SUFFIXES = ['', '-rc']
 BOOST_VERSIONS = list(range(38, 43))
 if sys.platform == 'linux2':
-    BOOST_VERSIONS.append(['karmic'])
+    BOOST_VERSIONS.append('karmic')
 
 
 def is_windows():
@@ -63,7 +63,7 @@ if execute('svn', 'up', '--ignore-externals'):
                     else:
                         built += 1
                         if not execute('%s/%s/compile' % (directory, project)):
-                            raise "Project failed"
+                            failure.append([project, suffix, boost])
                         else:
                             success.append([project, suffix, boost])
             else:
@@ -71,4 +71,6 @@ if execute('svn', 'up', '--ignore-externals'):
 
 for project, suffix, boost in success:
     print "Success", project + suffix, "Boost", boost
+for project, suffix, boost in failure:
+    print "Failure", project + suffix, "Boost", boost
 print "Total built", built, "Total success", len(success)
