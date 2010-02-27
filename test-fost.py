@@ -64,5 +64,5 @@ def status(k, l):
     for project, suffix, boost, variant in l:
         print k, project + suffix, "Boost", boost, "Variant:", variant
 status("Success", success)
-status("Failure", falure)
+status("Failure", failure)
 print "Total built", built, "Total success", len(success)
