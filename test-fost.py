@@ -18,6 +18,8 @@ def execute(program, *args):
     """
         Execute a program and return True if it worked.
     """
+    if is_windows():
+        program = program.replace('/', '\\')
     command = '%s %s' % (program, ' '.join([str(a) for a in args]))
     print "Starting", command
     return os.system(command) == 0
