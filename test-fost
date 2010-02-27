@@ -8,7 +8,6 @@ do
         for B in 37 38 39 40 41 42
         do
             echo Starting ${T}${S} with Boost 1.${B}
-            rm -rf ${T}${S}/dist
 
             if test ! -e ${T}${S}/Boost/1_${B}_0
             then {
@@ -24,8 +23,10 @@ do
             }
             fi
 
-            if ${T}${S}/Boost/install $B 0 &&
-                ${T}${S}/${T}/compile all debug &&
+            if ${T}${S}/Boost/install $B 0 && \
+                rm -rf ${T}${S}/dist && \
+                ${T}${S}/${T}/compile all debug && \
+                rm -rf ${T}${S}/dist && \
                 ${T}${S}/${T}/compile all release
             then {
                 echo OK ${T}${S} with Boost 1.$B.0
