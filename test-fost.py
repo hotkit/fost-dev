@@ -58,6 +58,7 @@ for project, configuration in PROJECTS.items():
                                 failure.append([project, suffix, boost, variant, target])
                             else:
                                 success.append([project, suffix, boost, variant, target])
+                                break
         else:
             raise "svn up failed"
 
