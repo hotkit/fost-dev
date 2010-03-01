@@ -25,6 +25,7 @@ PROJECTS = {
     ),
     'spruce': dict(
         suffixes = ['']
+        boost = [41, 42],
     ),
 }
 SUFFIXES = ['', '-rc']
