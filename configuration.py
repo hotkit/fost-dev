@@ -24,7 +24,7 @@ PROJECTS = {
         boost = [41, 42],
     ),
     'spruce': dict(
-        suffixes = ['']
+        suffixes = [''],
         boost = [41, 42],
     ),
 }
