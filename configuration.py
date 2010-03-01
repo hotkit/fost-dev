@@ -3,7 +3,8 @@
 
 PROJECTS = {
     'animray': dict(
-        suffixes = ['']
+        suffixes = [''],
+        variants = ['release'],
     ),
     'appservices': dict(
         suffixes = ['']
@@ -19,7 +20,8 @@ PROJECTS = {
     'fost-postgres': {},
     'fost-py': {},
     'metachatr': dict(
-        suffixes = ['']
+        suffixes = [''],
+        boost = [41, 42],
     ),
     'spruce': dict(
         suffixes = ['']
