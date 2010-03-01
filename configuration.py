@@ -12,7 +12,7 @@ PROJECTS = {
     'appservicesdk': {},
     'fost-aws': {},
     'fost-base': dict(
-        #suffixes = ['', '-rc', '-stable']
+        suffixes = ['', '-rc', '-stable']
     ),
     'fost-internet': {},
     'fost-meta': {},
