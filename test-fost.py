@@ -3,8 +3,13 @@
 import os, sys
 
 from configuration import *
-if sys.platform == 'linux2':
-    BOOST_VERSIONS.append('karmic')
+
+for arg in sys.argv[1:]:
+    print "Importing", arg
+    __import__(arg)
+
+if not len(BOOST_VERSIONS):
+    BOOST_VERSIONS = [38]
 
 
 def is_windows():

@@ -29,6 +29,6 @@ PROJECTS = {
     ),
 }
 SUFFIXES = ['', '-rc']
-BOOST_VERSIONS = [38]
+BOOST_VERSIONS = []
 VARIANTS = ['debug', 'release']
 TARGETS = ['all', '']
