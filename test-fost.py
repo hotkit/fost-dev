@@ -48,7 +48,7 @@ def install_boost(directory, version):
 built, success, failure = 0, [], []
 for project, configuration in PROJECTS.items():
     for suffix in configuration.get('suffixes', SUFFIXES):
-        directory = '%s%s' % (project, suffix)
+        directory = '%s%s' % (configuration.get('folder', project), suffix)
         if execute('svn', 'up', directory):
             for boost in configuration.get('boost', BOOST_VERSIONS):
                 if not install_boost(directory, boost):
