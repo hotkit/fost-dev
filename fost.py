@@ -6,7 +6,9 @@ PROJECTS['fost-aws'] = {}
 PROJECTS['fost-base'] = dict(
     suffixes = ['', '-rc', '-stable']
 )
-PROJECTS['fost-internet'] = {}
+PROJECTS['fost-internet'] = dict(
+    suffixes = ['', '-rc', '-stable']
+)
 PROJECTS['fost-meta'] = {}
 PROJECTS['fost-orm'] = {}
 PROJECTS['fost-postgres'] = {}
