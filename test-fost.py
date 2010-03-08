@@ -9,7 +9,7 @@ for arg in sys.argv[1:]:
     __import__(arg)
 
 if not len(BOOST_VERSIONS):
-    BOOST_VERSIONS = [38]
+    BOOST_VERSIONS = [41]
 
 
 def is_windows():
