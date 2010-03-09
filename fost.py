@@ -15,7 +15,9 @@ PROJECTS['fost-meta'] = {}
 PROJECTS['fost-orm'] = dict(
     suffixes = ['', '-rc', '-stable']
 )
-PROJECTS['fost-postgres'] = {}
+PROJECTS['fost-postgres'] = dict(
+    suffixes = ['', '-rc', '-stable']
+)
 PROJECTS['fost-py'] = {}
 
 # Example project
