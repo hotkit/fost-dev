@@ -2,23 +2,13 @@
 from configuration import *
 
 
-PROJECTS['fost-aws'] = dict(
-    suffixes = ['', '-rc', '-stable']
-)
-PROJECTS['fost-base'] = dict(
-    suffixes = ['', '-rc', '-stable']
-)
-PROJECTS['fost-internet'] = dict(
-    suffixes = ['', '-rc', '-stable']
-)
-PROJECTS['fost-meta'] = {}
-PROJECTS['fost-orm'] = dict(
-    suffixes = ['', '-rc', '-stable']
-)
-PROJECTS['fost-postgres'] = dict(
-    suffixes = ['', '-rc', '-stable']
-)
-PROJECTS['fost-py'] = {}
+for p in [
+        'fost-aws', 'fost-base', 'fost-internet',
+        'fost-meta', 'fost-orm', 'fost-postgres',
+        'fost-py']:
+    PROJECT[p] = dict(
+        suffixes = ['', '-rc', '-stable']
+    )
 
 # Example project
 PROJECTS['hello'] = dict(
