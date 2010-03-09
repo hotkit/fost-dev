@@ -6,7 +6,7 @@ for p in [
         'fost-aws', 'fost-base', 'fost-internet',
         'fost-meta', 'fost-orm', 'fost-postgres',
         'fost-py']:
-    PROJECT[p] = dict(
+    PROJECTS[p] = dict(
         suffixes = ['', '-rc', '-stable']
     )
 
