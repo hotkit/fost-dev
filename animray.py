@@ -3,5 +3,4 @@ from configuration import *
 
 PROJECTS['animray'] = dict(
     suffixes = [''],
-    variants = ['release'],
 )
