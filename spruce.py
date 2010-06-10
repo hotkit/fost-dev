@@ -2,8 +2,9 @@
 from configuration import *
 
 
-spruce_versions = [v for v in BOOST_VERSIONS if v in [41, 42]]
+spruce_versions = [v for v in BOOST_VERSIONS if v >= 41] or [41]
 if len(spruce_versions):
+    print "Adding spruce..."
     PROJECTS['spruce'] = dict(
         suffixes = [''],
         boost = spruce_versions
