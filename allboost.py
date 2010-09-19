@@ -2,4 +2,5 @@
 from configuration import *
 
 for v in range(37, 44):
-    BOOST_VERSIONS.append(v)
+    if v != 43:
+        BOOST_VERSIONS.append(v)
