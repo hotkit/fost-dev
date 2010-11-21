@@ -2,8 +2,7 @@
 from configuration import *
 
 
-for p in [
-        'fost-aws', 'fost-base', 'fost-internet',
+for p in ['fost-aws', 'fost-base', 'fost-internet',
         'fost-meta', 'fost-orm', 'fost-postgres',
         'fost-py']:
     PROJECTS[p] = dict(

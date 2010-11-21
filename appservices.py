@@ -6,4 +6,4 @@ PROJECTS['appservices'] = dict(
     suffixes = [''],
     variants = ['release'],
 )
-PROJECTS['appservicesdk'] ={}
+PROJECTS['appservicesdk'] = {}
