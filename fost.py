@@ -7,7 +7,7 @@ for p in [
         'fost-meta', 'fost-orm', 'fost-postgres',
         'fost-py']:
     PROJECTS[p] = dict(
-        suffixes = ['', '-rc', '-stable']
+        suffixes = ['', '-stable']
     )
 
 # Example project
