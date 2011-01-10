@@ -3,6 +3,7 @@ cd `dirname $0`
 
 svn co https://svn.felspar.com/public/fost-aws/tags/$1 ../$1/fost-aws
 svn co https://svn.felspar.com/public/fost-base/tags/$1 ../$1/fost-base
+svn co https://svn.felspar.com/public/fost-hello/tags/$1 ../$1/fost-hello
 svn co https://svn.felspar.com/public/fost-internet/tags/$1 ../$1/fost-internet
 svn co https://svn.felspar.com/public/fost-meta/tags/$1 ../$1/fost-meta
 svn co https://svn.felspar.com/public/fost-orm/tags/$1 ../$1/fost-orm
