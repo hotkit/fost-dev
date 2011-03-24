@@ -1,0 +1,20 @@
+#!/bin/bash
+export RELEASE=$1
+
+for LIBRARY in fost-aws fost-base fost-internet fost-meta fost-orm fost-postgres fost-py fost-windows
+do
+    echo ${LIBRARY}
+    svn cp https://svn.felspar.com/public/${LIBRARY}/stable \
+        https://svn.felspar.com/public/${LIBRARY}/tags/${RELEASE} \
+        -m "Tagging Fost release ${RELEASE}"
+    svn co https://svn.felspar.com/public/${LIBRARY}/tags/${RELEASE} \
+        ../${RELEASE}/${LIBRARY}
+    ../${RELEASE}/${LIBRARY}/Boost/install maverick
+done
+
+echo fost-hello
+svn cp https://svn.felspar.com/public/fost-hello/trunk \
+    https://svn.felspar.com/public/fost-hello/tags/${RELEASE} \
+    -m "Tagging Fost release ${RELEASE}"
+svn co https://svn.felspar.com/public/fost-hello/tags/${RELEASE} \
+    ../${RELEASE}/fost-hello
