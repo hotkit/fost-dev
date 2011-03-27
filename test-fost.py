@@ -34,7 +34,7 @@ def install_boost(directory, version):
     """
         Installs the right version of Boost for the platform.
     """
-    if not is_windows() and not version in ['karmic', 'lucid']:
+    if not is_windows() and not version in ['karmic', 'lucid', 'maverick']:
         path = '%s/Boost/1_%s_0' % (directory, version)
         if not os.path.isdir(path):
             print "Soft-linking to", path
