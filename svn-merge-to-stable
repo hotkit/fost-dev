@@ -1,8 +1,8 @@
 #!/bin/bash
 export LIBRARY_TO_BUILD=$1
 cd `dirname $0`/${LIBRARY_TO_BUILD}-stable && \
-	svn up && \
-	Boost/install maverick && \
-	svn merge https://svn.felspar.com/public/${LIBRARY_TO_BUILD}/trunk && \
-	${LIBRARY_TO_BUILD}/compile all && \
-	svn diff ${LIBRARY_TO_BUILD}/ChangeLog
+    svn up && \
+    Boost/install natty && \
+    svn merge https://svn.felspar.com/public/${LIBRARY_TO_BUILD}/trunk && \
+    ${LIBRARY_TO_BUILD}/compile all && \
+    svn diff ${LIBRARY_TO_BUILD}/ChangeLog

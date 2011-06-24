@@ -9,7 +9,7 @@ do
         -m "Tagging Fost release ${RELEASE}"
     svn co https://svn.felspar.com/public/${LIBRARY}/tags/${RELEASE} \
         ../${RELEASE}/${LIBRARY}
-    ../${RELEASE}/${LIBRARY}/Boost/install maverick
+    ../${RELEASE}/${LIBRARY}/Boost/install natty
 done
 
 echo fost-hello
