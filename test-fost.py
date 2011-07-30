@@ -39,6 +39,9 @@ def install_boost(directory, version):
         if not os.path.isdir(path):
             print "Soft-linking to", path
             os.symlink('../../Boost/1_%s_0' % version, path)
+        boost_folder = '%s/Boost/boost' % directory
+        if not os.path.isdir(boost_folder):
+            os.symlink('../../Boost/boost', boost_folder)
         if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, version)):
             execute('%s/Boost/build' % directory, version, 0)
     if is_windows():
@@ -59,9 +62,7 @@ for project, configuration in PROJECTS.items():
                     for variant in configuration.get('variants', VARIANTS):
                         for target in configuration.get('targets', TARGETS):
                             built += 1
-                            if not execute(
-                                '%s/%s/compile' % (directory, project), variant, target
-                            ):
+                            if not execute('./compile', directory, project, boost,  variant, target):
                                 failure.append([project, suffix, boost, variant, target])
                             else:
                                 success.append([project, suffix, boost, variant, target])
