@@ -1,7 +1,7 @@
 #!/bin/bash
 export RELEASE=$1
 
-for LIBRARY in fost-aws fost-base fost-internet fost-meta fost-orm fost-postgres fost-py fost-windows
+for LIBRARY in fost-base fost-internet fost-aws fost-orm fost-py fost-postgres fost-windows fost-meta
 do
     echo ${LIBRARY}
     svn cp https://svn.felspar.com/public/${LIBRARY}/stable \
@@ -9,12 +9,21 @@ do
         -m "Tagging Fost release ${RELEASE}"
     svn co https://svn.felspar.com/public/${LIBRARY}/tags/${RELEASE} \
         ../${RELEASE}/${LIBRARY}
-    ../${RELEASE}/${LIBRARY}/Boost/install natty
+    svn pg svn:externals ../${RELEASE}/${LIBRARY} > /tmp/externs-stable.txt
+    sed "s/\/stable\//\/tags\/${RELEASE}\//g" /tmp/externs-stable.txt > /tmp/externs-new.txt
+    svn ps svn:externals ../${RELEASE}/${LIBRARY} -F /tmp/externs-new.txt
+    svn ci ../${RELEASE}/${LIBRARY} -m "Updated to use tagged version of dependant libs"
+    svn up ../${RELEASE}/${LIBRARY}
 done
 
 echo fost-hello
 svn cp https://svn.felspar.com/public/fost-hello/trunk \
-    https://svn.felspar.com/public/fost-hello/tags/${RELEASE} \
-    -m "Tagging Fost release ${RELEASE}"
+     https://svn.felspar.com/public/fost-hello/tags/${RELEASE} \
+     -m "Tagging Fost release ${RELEASE}"
 svn co https://svn.felspar.com/public/fost-hello/tags/${RELEASE} \
-    ../${RELEASE}/fost-hello
+     ../${RELEASE}/fost-hello
+svn pg svn:externals ../${RELEASE}/fost-hello > /tmp/externs-stable.txt
+sed "s/\/stable\//\/tags\/${RELEASE}\//g" /tmp/externs-stable.txt > /tmp/externs-new.txt
+svn ps svn:externals ../${RELEASE}/fost-hello -F /tmp/externs-new.txt
+svn ci ../${RELEASE}/fost-hello -m "Updated to use tagged version of dependant libs"
+svn up ../${RELEASE}/fost-hello
