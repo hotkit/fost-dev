@@ -2,6 +2,6 @@
 from configuration import *
 
 BOOST_VERSIONS.append('oneiric')
-if 41 in BOOST_VERSIONS:
-    BOOST_VERSIONS.remove(41)
-
+for v in xrange(40, 47):
+    if v in BOOST_VERSIONS:
+        BOOST_VERSIONS.remove(v)

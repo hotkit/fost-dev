@@ -4,5 +4,6 @@ cd `dirname $0`/${LIBRARY_TO_BUILD}-stable && \
     svn up && \
     Boost/install 47 0 && \
     svn merge https://svn.felspar.com/public/${LIBRARY_TO_BUILD}/trunk && \
+    svn up && \
     ${LIBRARY_TO_BUILD}/compile all && \
     svn diff ${LIBRARY_TO_BUILD}/ChangeLog
