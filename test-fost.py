@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os, sys
+import os
+import sys
 
 from configuration import *
+
+if not len(BOOST_VERSIONS):
+    BOOST_VERSIONS = [41, 47]
 
 for arg in sys.argv[1:]:
     print "Importing", arg
     __import__(arg)
-
-if not len(BOOST_VERSIONS):
-    BOOST_VERSIONS = [41, 47]
 
 
 def is_windows():
