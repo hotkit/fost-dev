@@ -4,7 +4,7 @@ from configuration import *
 
 for p in ['fost-aws', 'fost-base', 'fost-internet',
         'fost-meta', 'fost-orm', 'fost-postgres',
-        'fost-py']:
+        'fost-py', 'fost-web']:
     PROJECTS[p] = dict(
         suffixes = ['', '-stable']
     )
@@ -15,3 +15,10 @@ PROJECTS['hello'] = dict(
     folder = 'fost-hello',
     targets = [''],
 )
+# Until the first release
+PROJECTS['fost-web'] = dict(
+    suffixes = [''],
+    folder = 'fost-hello',
+    targets = [''],
+)
+
