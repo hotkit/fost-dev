@@ -18,7 +18,6 @@ PROJECTS['hello'] = dict(
 # Until the first release
 PROJECTS['fost-web'] = dict(
     suffixes = [''],
-    folder = 'fost-hello',
     targets = [''],
 )
 
