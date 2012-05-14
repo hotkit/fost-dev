@@ -28,6 +28,17 @@ def execute(program, *args):
     return os.system(command) == 0
 
 
+def update(directory):
+    """
+        Update the code to the latest version.
+    """
+    updater = os.path.join(directory, 'update' if not is_windows() else 'update.cmd')
+    if os.path.exists(updater):
+        return execute(updater)
+    else:
+        return execute('svn', 'up', directory)
+
+
 def install_boost(directory, version):
     """
         Installs the right version of Boost for the platform.
@@ -52,7 +63,7 @@ built, success, failure = 0, [], []
 for project, configuration in PROJECTS.items():
     for suffix in configuration.get('suffixes', SUFFIXES):
         directory = '%s%s' % (configuration.get('folder', project), suffix)
-        if execute('svn', 'up', directory):
+        if update(directory):
             for boost in configuration.get('boost', BOOST_VERSIONS):
                 if not install_boost(directory, boost):
                     raise "Boost install failed"
