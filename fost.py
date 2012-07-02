@@ -15,9 +15,6 @@ PROJECTS['hello'] = dict(
     folder = 'fost-hello',
     targets = [''],
 )
-# Until the first release
-PROJECTS['fost-web'] = dict(
-    suffixes = [''],
-    targets = [''],
-)
+# Until fost-web supports the all target
+PROJECTS['fost-web']['targets'] = ['']
 
