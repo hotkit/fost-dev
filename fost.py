@@ -15,6 +15,4 @@ PROJECTS['hello'] = dict(
     folder = 'fost-hello',
     targets = [''],
 )
-# Until fost-web supports the all target
-PROJECTS['fost-web']['targets'] = ['']
 
