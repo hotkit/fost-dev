@@ -3,6 +3,6 @@
 
 PROJECTS = {}
 SUFFIXES = ['', '-rc']
-BOOST_VERSIONS = [41, 47]
+BOOST_VERSIONS = [40, 47]
 VARIANTS = ['debug', 'release']
 TARGETS = ['all', '']
