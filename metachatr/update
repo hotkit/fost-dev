@@ -1,0 +1,29 @@
+#!/bin/bash
+cd `dirname $0`
+svn up .
+
+if [ ! -e fost-web ]
+then
+    git clone git@github.com:KayEss/fost-web.git
+    cd fost-web
+    git flow init -d
+    git pull origin develop
+    cd ..
+else
+    cd fost-web
+    git pull origin develop
+    cd ..
+fi
+
+if [ ! -e metachatr ]
+then
+    git clone git@github.com:KayEss/metachatr.git
+    cd metachatr
+    git flow init -d
+    git pull origin develop
+    cd ..
+else
+    cd metachatr
+    git pull origin develop
+    cd ..
+fi
