@@ -1,0 +1,27 @@
+{
+    "root": "/mnt/files2/chroot",
+    "source": "http://th.archive.ubuntu.com/ubuntu/",
+    "base-packages": ["lsb-release", "openssh-client"],
+    "defaults": {
+        "conf": {
+            "root-users": ["kirit"],
+            "users": ["kirit"]
+        }
+    },
+    "schroot": {
+        "build-lucid64": {
+            "release": "lucid",
+            "packages": [
+                "g++", "libbz2-dev", "libssl-dev", "python-dev", "uuid-dev",
+                "libboost-dev", "subversion", "git-core"
+            ]
+        },
+        "root-ca-kirit": {
+            "release": "precise",
+            "packages": ["openssl"],
+            "conf": {
+                "personality": "linux32"
+            }
+        }
+    }
+}
