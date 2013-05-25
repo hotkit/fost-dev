@@ -1,0 +1,55 @@
+{
+    "root": "/mnt/files2/chroot",
+    "source": "http://th.archive.ubuntu.com/ubuntu/",
+    "http-proxy": "http://angelo:3142/",
+    "base-packages": [
+        "bash-completion", "lsb-release", "nano", "ssh-client"
+    ],
+    "defaults": {
+        "sources": {
+            "universe": {}
+        },
+        "conf": {
+            "root-users": ["kirit"],
+            "users": ["kirit"]
+        }
+    },
+    "schroot": {
+        "testapt-lucid32": {
+            "release": "lucid",
+            "conf": {
+                "personality": "linux32"
+            }
+        },
+        "testapt-lucid64": {
+            "release": "lucid"
+        },
+        "testapt-precise32": {
+            "release": "precise",
+            "conf": {
+                "personality": "linux32"
+            }
+        },
+        "testapt-precise64": {
+            "release": "precise"
+        },
+        "testapt-quantal32": {
+            "release": "quantal",
+            "conf": {
+                "personality": "linux32"
+            }
+        },
+        "testapt-quantal64": {
+            "release": "quantal"
+        },
+        "testapt-raring32": {
+            "release": "raring",
+            "conf": {
+                "personality": "linux32"
+            }
+        },
+        "testapt-raring64": {
+            "release": "raring"
+        }
+    }
+}
