@@ -1,5 +1,5 @@
 {
-    "root": "/mnt/files2/chroot",
+    "root": "/mnt/files4/chroot",
     "source": "http://th.archive.ubuntu.com/ubuntu/",
     "http-proxy": "http://angelo:3142/",
     "base-packages": [
@@ -8,6 +8,7 @@
         "libboost-all-dev", "subversion", "git-core"
     ],
     "defaults": {
+        "variant": "buildd",
         "sources": {
             "universe": {}
         },
