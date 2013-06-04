@@ -5,7 +5,8 @@
     "base-packages": [
         "bash-completion", "lsb-release", "nano", "ssh-client",
         "g++", "libbz2-dev", "libssl-dev", "python-dev", "uuid-dev",
-        "libboost-all-dev", "subversion", "git-core"
+        "libboost-all-dev", "subversion", "git-core",
+        "chrpath"
     ],
     "defaults": {
         "variant": "buildd",
