@@ -1,5 +1,5 @@
 #!/bin/bash
 cd `dirname $0`
-svn up --ignore-externals
+git pull origin master
 
 time ./test-fost.py $*
