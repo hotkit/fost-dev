@@ -2,11 +2,12 @@ from configuration import *
 
 
 for project, configuration in PROJECTS.items():
-    if not os.path.exists(project):
-        worked('git', 'clone', configuration['source'], project)
+    folder = configuration.get('folder', project)
+    if not os.path.exists(folder):
+        worked('git', 'clone', configuration['source'], folder)
         if configuration.get('gitflow', True):
-            git(project, 'flow', 'init', '-d')
-    git(project, 'submodule', 'init')
-    git(project, 'submodule', 'sync')
-    git(project, 'submodule', 'update')
+            git(folder, 'flow', 'init', '-d')
+    git(folder, 'submodule', 'init')
+    git(folder, 'submodule', 'sync')
+    git(folder, 'submodule', 'update')
 
