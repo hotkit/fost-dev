@@ -23,27 +23,23 @@ def install_boost(directory, version):
 
 built, success, failure = 0, [], []
 for project, configuration in PROJECTS.items():
-    for suffix in configuration.get('suffixes', SUFFIXES):
-        directory = '%s%s' % (configuration.get('folder', project), suffix)
-        if update(directory):
-            for boost in configuration.get('boost', BOOST_VERSIONS):
-                if not install_boost(directory, boost):
-                    raise "Boost install failed"
-                else:
-                    for variant in configuration.get('variants', VARIANTS):
-                        for target in configuration.get('targets', TARGETS):
-                            built += 1
-                            if not execute('./compile', directory, project, boost,  variant, target):
-                                failure.append([project, suffix, boost, variant, target])
-                            else:
-                                success.append([project, suffix, boost, variant, target])
-                                break
+    directory = configuration.get('folder', project)
+    for boost in configuration.get('boost', BOOST_VERSIONS):
+        if not install_boost(directory, boost):
+            raise "Boost install failed"
         else:
-            raise "svn up failed"
+            for variant in configuration.get('variants', VARIANTS):
+                for target in configuration.get('targets', TARGETS):
+                    built += 1
+                    if not execute('./compile', directory, project, boost,  variant, target):
+                        failure.append([project, boost, variant, target])
+                    else:
+                        success.append([project, boost, variant, target])
+                        break
 
 def status(k, l):
-    for project, suffix, boost, variant, target in l:
-        print k, project + suffix, "Boost", boost, \
+    for project, boost, variant, target in l:
+        print k, project, "Boost", boost, \
             "Variant:", variant, "Target:", target
 status("Success", success)
 status("Failure", failure)
