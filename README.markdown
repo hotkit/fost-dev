@@ -24,6 +24,6 @@ The platform that you are running the tests on. For Ubuntu the release code name
 ## Actions ##
 
 * clone -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
-* push -- Push all projects back up to GitHub.
+* push -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code.
 * stable -- Merge the develop branches into master and push back to GitHub.
 * test -- Build the projects and run all of their tests.
