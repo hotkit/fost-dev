@@ -1,4 +1,10 @@
 #!/bin/bash
+# args are:
+# $1 = library
+# $2 = library
+# $3 = boost version
+# $4 = build target
+# $5 = variant
 cd `dirname $0`
 
 # Path is relative to the compile script at $1/$2
