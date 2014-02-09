@@ -6,8 +6,9 @@ PROJECTS['fost-base'] = dict(
     source='git@github.com:KayEss/fost-base-dev.git')
 
 
-PROJECTS['fost-hello'] = dict(
+PROJECTS['hello'] = dict(
     source='git@github.com:KayEss/fost-hello.git',
+    folder='fost-hello',
     gitflow=False, libs=[],
     targets = [''])
 
