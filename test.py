@@ -44,3 +44,5 @@ def status(k, l):
 status("Success", success)
 status("Failure", failure)
 print "Total built", built, "Total success", len(success)
+
+assert len(failure) == 0, "At least one build failed"
