@@ -2,10 +2,9 @@
 from configuration import *
 
 
-PROJECTS['fost-base'] = dict(
-    source='git@github.com:KayEss/fost-base-dev.git')
-PROJECTS['fost-internet'] = dict(
-    source='git@github.com:KayEss/fost-internet-dev.git')
+for lib in ['fost-aws', 'fost-base', 'fost-internet']:
+    PROJECTS[lib] = dict(
+        source='git@github.com:KayEss/%s-dev.git' % lib)
 
 
 PROJECTS['hello'] = dict(
