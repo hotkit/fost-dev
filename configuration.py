@@ -32,3 +32,11 @@ def worked(program, *args):
         Execute and make sure the command worked.
     """
     assert execute(program, *args)
+
+
+def git(directory, *args):
+    """
+        Executed git in the requested directory relative to here.
+    """
+    worked('cd', directory, '&&', 'git', *args)
+
