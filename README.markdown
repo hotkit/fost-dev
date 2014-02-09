@@ -33,3 +33,8 @@ The platform that you are running the tests on. For Ubuntu the release code name
 Get latest code and run all builds and tests on Ubuntu Saucy
 
     ./dev fost saucy clone test
+
+Push the current versions of all checked out libraries to GitHub.
+
+    ./dev fost push
+
