@@ -27,3 +27,9 @@ The platform that you are running the tests on. For Ubuntu the release code name
 * push -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code.
 * stable -- Merge the develop branches into master and push back to GitHub.
 * test -- Build the projects and run all of their tests.
+
+## Examples ##
+
+Get latest code and run all builds and tests on Ubuntu Saucy
+
+    ./dev fost saucy clone test
