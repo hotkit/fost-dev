@@ -8,7 +8,7 @@ PROJECTS['fost-base'] = dict(
 
 PROJECTS['fost-hello'] = dict(
     source='git@github.com:KayEss/fost-hello.git',
-    libs=[],
+    gitflow=False, libs=[],
     targets = [''])
 
 
