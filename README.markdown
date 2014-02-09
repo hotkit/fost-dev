@@ -25,7 +25,7 @@ The platform that you are running the tests on. For Ubuntu the release code name
 
 * clone -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
 * push -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code. It assumes that all of the project checkouts are on a tracked branch.
-* stable -- Merge the develop branches into master and push back to GitHub.
+* stable -- Merge the develop branches into master. Follow with `push` to send to GitHub.
 * test -- Build the projects and run all of their tests.
 
 ## Examples ##
@@ -37,4 +37,8 @@ Get latest code and run all builds and tests on Ubuntu Saucy
 Push the current versions of all checked out libraries to GitHub.
 
     ./dev fost push
+
+Merge the `develop` branches to master and then push to GitHub.
+
+    ./dev fost stable push
 
