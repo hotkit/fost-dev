@@ -4,6 +4,8 @@ from configuration import *
 
 PROJECTS['fost-base'] = dict(
     source='git@github.com:KayEss/fost-base-dev.git')
+PROJECTS['fost-internet'] = dict(
+    source='git@github.com:KayEss/fost-internet-dev.git')
 
 
 PROJECTS['hello'] = dict(
