@@ -3,6 +3,7 @@ import os
 import sys
 
 
+ARGS = []
 PROJECTS = {}
 BOOST_VERSIONS = [40, 47, 52]
 VARIANTS = ['debug', 'release']

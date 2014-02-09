@@ -17,6 +17,9 @@ def update(directory):
 if __name__ == "__main__":
     from configuration import *
     for arg in sys.argv[1:]:
+        ARGS.append(arg)
+    while len(ARGS):
+        arg = ARGS.pop(0)
         print "Importing", arg
         __import__(arg)
 
