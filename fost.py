@@ -2,17 +2,11 @@
 from configuration import *
 
 
-for p in ['fost-aws', 'fost-base', 'fost-internet',
-        'fost-meta', 'fost-orm', 'fost-postgres',
-        'fost-py', 'fost-web']:
-    PROJECTS[p] = dict(
-        suffixes = ['', '-stable']
-    )
+PROJECTS['fost-base'] = dict(
+    source='git@github.com:KayEss/fost-base-dev.git')
 
-# Example project
-PROJECTS['hello'] = dict(
-    suffixes = [''],
-    folder = 'fost-hello',
-    targets = [''],
-)
+
+PROJECTS['fost-hello'] = dict(
+    source='git@github.com:KayEss/fost-hello.git',
+    targets = [''])
 
