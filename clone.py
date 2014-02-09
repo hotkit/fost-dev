@@ -1,8 +1,7 @@
 from configuration import *
 
 
-for project, configuration in PROJECTS.items():
-    folder = configuration.get('folder', project)
+for project, folder, configuration in projects():
     if not os.path.exists(folder):
         worked('git', 'clone', configuration['source'], folder)
         if configuration.get('gitflow', True):

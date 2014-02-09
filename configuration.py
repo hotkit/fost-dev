@@ -41,3 +41,12 @@ def git(directory, *args):
     """
     worked('cd', directory, '&&', 'git', *args)
 
+
+def projects():
+    """
+        A generator that iterates through the projects giving up the name, folder and configuration.
+    """
+    for project, configuration in PROJECTS.items():
+        folder = configuration.get('folder', project)
+        yield (project, folder, configuration)
+
