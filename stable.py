@@ -3,11 +3,12 @@ from configuration import *
 
 for project, folder, configuration in projects():
     if configuration.get('gitflow', True):
-        git(folder, 'fetch', 'origin')
-        for branch in ['develop', 'master']:
-            git(folder, 'checkout', branch)
-            git(folder, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
-        git(folder, 'merge', '--no-ff', 'develop')
-        git(folder, 'push')
-        git(folder, 'checkout', 'develop')
+        for location in [folder] + [os.path.join(folder, lib) for lib in configuration['libs']]:
+            git(location, 'fetch', 'origin')
+            for branch in ['develop', 'master']:
+                git(location, 'checkout', branch)
+                git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
+            git(location, 'merge', '--no-ff', 'develop')
+            git(location, 'push')
+            git(location, 'checkout', 'develop')
 
