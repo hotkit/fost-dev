@@ -1,6 +1,0 @@
-#!/bin/bash
-export LIBRARY_TO_BUILD=fost-windows
-cd `dirname $0`/${LIBRARY_TO_BUILD}-stable && \
-	svn up && \
-	svn merge https://svn.felspar.com/public/${LIBRARY_TO_BUILD}/trunk && \
-	svn diff ${LIBRARY_TO_BUILD}/ChangeLog

@@ -1,9 +1,0 @@
-#!/bin/bash
-export LIBRARY_TO_BUILD=$1
-cd `dirname $0`/${LIBRARY_TO_BUILD}-stable && \
-    svn up && \
-    Boost/install $(lsb_release -cs) && \
-    svn merge https://svn.felspar.com/public/${LIBRARY_TO_BUILD}/trunk && \
-    (./update || svn up) && \
-    ${LIBRARY_TO_BUILD}/compile all && \
-    svn diff ${LIBRARY_TO_BUILD}/ChangeLog
