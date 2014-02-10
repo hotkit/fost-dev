@@ -2,10 +2,11 @@
 from configuration import *
 
 
-for lib in ['fost-aws', 'fost-base', 'fost-internet', 'fost-orm']:
+for lib in ['fost-aws', 'fost-base', 'fost-internet', 'fost-orm', 'fost-postgres']:
     PROJECTS[lib] = dict(
         source='git@github.com:KayEss/%s-dev.git' % lib)
 
+PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL/configure']
 
 PROJECTS['hello'] = dict(
     source='git@github.com:KayEss/fost-hello.git',

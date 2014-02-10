@@ -11,4 +11,6 @@ for project, folder, configuration in projects():
     git(folder, 'submodule', 'init')
     git(folder, 'submodule', 'sync')
     git(folder, 'submodule', 'update')
+    if configuration.has_key('post-clone'):
+        worked('cd', folder, '&&', *configuration['post-clone'])
 
