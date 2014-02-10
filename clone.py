@@ -6,6 +6,8 @@ for project, folder, configuration in projects():
         worked('git', 'clone', configuration['source'], folder)
         if configuration.get('gitflow', True):
             git(folder, 'flow', 'init', '-d')
+    else:
+        git(folder, 'pull')
     git(folder, 'submodule', 'init')
     git(folder, 'submodule', 'sync')
     git(folder, 'submodule', 'update')
