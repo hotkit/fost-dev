@@ -6,7 +6,7 @@ import sys
 ARGS = []
 ACTIONS = []
 BOOST_VERSIONS = [40, 47, 52]
-OPTIONS = {}
+OPTIONS = {'platform': None}
 PROJECTS = {}
 TARGETS = ['all', '']
 VARIANTS = ['debug', 'release']
@@ -51,4 +51,12 @@ def projects():
     for project, configuration in PROJECTS.items():
         folder = configuration.get('folder', project)
         yield (project, folder, configuration)
+
+
+
+def platform(name):
+    """
+        Set the platform name.
+    """
+    OPTIONS['platform'] = name
 
