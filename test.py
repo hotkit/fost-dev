@@ -23,6 +23,8 @@ def install_boost(directory, version):
 
 built, success, failure = 0, [], []
 for project, configuration in PROJECTS.items():
+    if configuration.get('test', True) == False:
+        continue
     directory = configuration.get('folder', project)
     for boost in configuration.get('boost', BOOST_VERSIONS):
         if not install_boost(directory, boost):
