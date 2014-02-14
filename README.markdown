@@ -19,7 +19,9 @@ The only option supported right now is `fost` which is the collection of Fost li
 
 ## Platform ##
 
-The platform that you are running the tests on. For Ubuntu the release code name is used (i.e. `precise` etc.). For Windows use `windows` and for Mac use `snowleopard`.
+The platform that you are running the tests on. For Ubuntu you should find that the correct platform is chosen for you, but if you get an import error you may be using a version that the `dev` system doesn't know about.
+
+For Windows use `windows` and for Mac use `snowleopard`.
 
 ## Actions ##
 
