@@ -4,10 +4,12 @@ import sys
 
 
 ARGS = []
-PROJECTS = {}
+ACTIONS = []
 BOOST_VERSIONS = [40, 47, 52]
-VARIANTS = ['debug', 'release']
+OPTIONS = {}
+PROJECTS = {}
 TARGETS = ['all', '']
+VARIANTS = ['debug', 'release']
 
 
 def is_windows():

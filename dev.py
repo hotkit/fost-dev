@@ -23,3 +23,6 @@ if __name__ == "__main__":
         print "Importing", arg
         __import__(arg)
 
+    while len(ACTIONS):
+        action = ACTIONS.pop(0)
+        action()
