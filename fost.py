@@ -10,7 +10,7 @@ for lib in ['fost-aws', 'fost-base', 'fost-internet', 'fost-orm',
 PROJECTS['fost-meta'] = dict(
     source='git@github.com:KayEss/fost-meta.git',
     libs=[])
-PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL/configure']
+PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL\\configure']
 PROJECTS['fost-windows']['test'] = False
 PROJECTS['hello'] = dict(
     source='git@github.com:KayEss/fost-hello.git',
