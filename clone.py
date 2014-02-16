@@ -6,7 +6,10 @@ def clone():
         if not os.path.exists(folder):
             worked('git', 'clone', configuration['source'], folder)
             if configuration.get('gitflow', True):
-                git(folder, 'flow', 'init', '-d')
+                if is_windows():
+                    git(folder, "checkout", "-b", "develop", "origin/develop")
+                else:
+                    git(folder, 'flow', 'init', '-d')
         else:
             git(folder, 'pull')
         git(folder, 'submodule', 'init')
