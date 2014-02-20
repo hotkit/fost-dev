@@ -15,6 +15,10 @@ def clone():
         git(folder, 'submodule', 'init')
         git(folder, 'submodule', 'sync')
         git(folder, 'submodule', 'update')
+        if not is_windows():
+            git(folder, 'submodule', 'foreach',
+                "\"(git branch -a | grep 'remotes/origin/develop$') && git flow init -d || true\"")
+            git(folder, 'submodule', 'update')
         if configuration.has_key('post-clone'):
             worked('cd', folder, '&&', *configuration['post-clone'])
 
