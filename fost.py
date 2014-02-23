@@ -3,7 +3,7 @@ from configuration import *
 import aws
 
 
-for lib in ['fost-aws', 'fost-base', 'fost-internet', 'fost-orm',
+for lib in ['fost-base', 'fost-internet', 'fost-orm',
         'fost-postgres', 'fost-py', 'fost-windows']:
     PROJECTS[lib] = dict(
         source='git@github.com:KayEss/%s-dev.git' % lib)
