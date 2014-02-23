@@ -11,3 +11,9 @@ if 37 in BOOST_VERSIONS:
 if PROJECTS.has_key('fost-windows'):
     PROJECTS['fost-windows']['test'] = True
 
+for project, configuration in PROJECTS.items():
+    if configuration.has_key('post-clone'):
+        configuration['post-clone'].append('OpenSSL\\configure')
+    else:
+        configuration['post-clone'] = ['OpenSSL\\configure']
+
