@@ -44,6 +44,18 @@ def git(directory, *args):
     worked('cd', directory, '&&', 'git', *args)
 
 
+def git_capture(directory, *args):
+    """
+        Execute the git command and return it's output.
+    """
+    args = list(args)
+    args.append("> /tmp/c.git.txt")
+    git(directory, *args)
+    output = file('/tmp/c.git.txt').read()
+    print output
+    return output
+
+
 def projects():
     """
         A generator that iterates through the projects giving up the name, folder and configuration.
@@ -51,7 +63,6 @@ def projects():
     for project, configuration in PROJECTS.items():
         folder = configuration.get('folder', project)
         yield (project, folder, configuration)
-
 
 
 def platform(name):
