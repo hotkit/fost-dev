@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from configuration import *
+import aws
 
 
 for lib in ['fost-aws', 'fost-base', 'fost-internet', 'fost-orm',
