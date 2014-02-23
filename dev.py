@@ -37,6 +37,10 @@ if __name__ == "__main__":
             print "sys.platform reports", sys.platform
             sys.exit(1)
 
-    while len(ACTIONS):
-        action = ACTIONS.pop(0)
-        action()
+    if len(ACTIONS):
+        while len(ACTIONS):
+            action = ACTIONS.pop(0)
+            action()
+    else:
+        print "No actions specified"
+        print "Loaded projects are", ', '.join(PROJECTS.keys())
