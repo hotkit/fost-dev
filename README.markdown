@@ -10,7 +10,7 @@ The main command is `./dev`. It takes a number of options that control what is g
 
 ## Libraries ##
 
-The only option supported right now is `fost` which is the collection of Fost libraries that have been moved to git so far.
+Most of the libraries are still only in the `fost` collection, but fost-aws has also been split out to `aws`.
 
 ## Options ##
 
@@ -21,20 +21,20 @@ The only option supported right now is `fost` which is the collection of Fost li
 
 The platform that you are running the tests on. For Ubuntu you should find that the correct platform is chosen for you, but if you get an import error you may be using a version that the `dev` system doesn't know about.
 
-For Windows use `windows` and for Mac use `snowleopard`.
+For 32 bit Windows the `windows` option should also be selected for you. For Mac use `snowleopard`.
 
 ## Actions ##
 
-* clone -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
-* push -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code. It assumes that all of the project checkouts are on a tracked branch.
-* stable -- Merge the develop branches into master. Follow with `push` to send to GitHub.
-* test -- Build the projects and run all of their tests.
+* `clone` -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
+* `push` -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code. It assumes that all of the project checkouts are on a tracked branch.
+* `stable` -- Merge the develop branches into master. Follow with `push` to send to GitHub.
+* `test` -- Build the projects and run all of their tests.
 
 ## Examples ##
 
 Get latest code and run all builds and tests on Ubuntu Saucy
 
-    ./dev fost saucy clone test
+    ./dev fost clone test
 
 Push the current versions of all checked out libraries to GitHub.
 
@@ -44,3 +44,6 @@ Merge the `develop` branches to master and then push to GitHub.
 
     ./dev fost stable push
 
+Fetch the current version of fost-aws, update to the latest libraries, test then push (if all of the tests pass).
+
+    ./dev aws clone latest test push
