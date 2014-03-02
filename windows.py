@@ -13,6 +13,7 @@ if PROJECTS.has_key('fost-windows'):
 
 for project, configuration in PROJECTS.items():
     if configuration.has_key('post-clone'):
+        configuration['post-clone'].append('&&')
         configuration['post-clone'].append('OpenSSL\\configure')
     else:
         configuration['post-clone'] = ['OpenSSL\\configure']
