@@ -19,6 +19,8 @@ def dotests():
             if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, version)):
                 execute('%s/Boost/build' % directory, version, 0)
         if is_windows():
+            if not os.path.isdir('Boost/1_%s_0' % version):
+                execute('Boost\\build', version, '0')
             return execute('%s/Boost/install' % directory, version, 0, '../../Boost')
         else:
             return execute('%s/Boost/install' % directory, version, 0)
