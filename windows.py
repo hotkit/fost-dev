@@ -10,6 +10,8 @@ if 37 in BOOST_VERSIONS:
 
 if PROJECTS.has_key('fost-windows'):
     PROJECTS['fost-windows']['test'] = True
+    # The ADO code requires MFC/ATL
+    PROJECTS['fost-windows']['variants'] = ['debug-mfc', 'release-mfc']
 
 for project, configuration in PROJECTS.items():
     if configuration.has_key('post-clone'):
