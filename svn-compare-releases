@@ -1,6 +1,0 @@
-#!/bin/bash
-for n in fost-aws fost-base fost-internet fost-meta fost-orm fost-postgres fost-py fost-web fost-windows
-do
-    echo $n
-    diff $1/$n/$n/ChangeLog $2/$n/$n/ChangeLog
-done
