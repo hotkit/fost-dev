@@ -7,7 +7,7 @@ def push():
         git(folder, 'push', '--all')
         git(folder, 'push', '--tags')
         for lib in configuration['libs']:
-            subfolder = os.path.join(project, lib)
+            subfolder = os.path.join(folder, lib)
             git(subfolder, 'push', '--all')
             git(subfolder, 'push', '--tags')
 
