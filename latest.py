@@ -2,6 +2,8 @@ from configuration import *
 
 
 def latest():
+    git('Boost', 'checkout', 'master')
+    git('Boost', 'pull')
     for project, folder, configuration in projects():
         if configuration.get('gitflow', True):
             git(folder, 'checkout', 'develop')
