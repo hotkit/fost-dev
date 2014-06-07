@@ -10,6 +10,12 @@ def stable():
                     git(location, 'checkout', branch)
                     git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
                 git(location, 'merge', '--no-ff', 'develop')
+                git(location, 'push')
+                git(location, 'push', '--tags')
+                for lib in configuration['libs']:
+                    subfolder = os.path.join(folder, lib)
+                    git(subfolder, 'push')
+                    git(subfolder, 'push', '--tags')
                 git(location, 'checkout', 'develop')
 
 
