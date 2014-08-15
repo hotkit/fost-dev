@@ -28,6 +28,7 @@ For 32 bit Windows the `windows` option should also be selected for you. For Mac
 * `latest` -- Update the submodules to their latest verisons using the origin master or develop branches as appropriate. These changes are then checked in.
 * `pull` -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
 * `push` -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code. It assumes that all of the project checkouts are on a tracked branch.
+* `release` -- Tag the master branches with a new version number. Takes an argument specifying the version number to use.
 * `stable` -- Merge the develop branches into master. Follow with `push` to send to GitHub.
 * `test` -- Build the projects and run all of their tests.
 
