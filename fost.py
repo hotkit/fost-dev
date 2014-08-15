@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from configuration import *
 import aws
+import mengmom
 
 
 for lib in ['fost-base', 'fost-internet', 'fost-orm',
