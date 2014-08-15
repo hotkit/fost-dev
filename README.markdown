@@ -25,8 +25,8 @@ For 32 bit Windows the `windows` option should also be selected for you. For Mac
 
 ## Actions ##
 
-* `clone` -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
 * `latest` -- Update the submodules to their latest verisons using the origin master or develop branches as appropriate. These changes are then checked in.
+* `pull` -- Pull all libraries from GitHub and make sure that the right versions of the sub-modules are in use. If a library is already present then it just makes sure that the sub-module is checked out at the correct revision.
 * `push` -- Push all projects back up to GitHub. If no libraries are included then it just pushes the `fost-dev` code. It assumes that all of the project checkouts are on a tracked branch.
 * `stable` -- Merge the develop branches into master. Follow with `push` to send to GitHub.
 * `test` -- Build the projects and run all of their tests.
@@ -35,7 +35,7 @@ For 32 bit Windows the `windows` option should also be selected for you. For Mac
 
 Get latest code and run all builds and tests on Ubuntu Saucy
 
-    ./dev fost clone test
+    ./dev fost pull test
 
 Push the current versions of all checked out libraries to GitHub.
 
@@ -47,4 +47,4 @@ Merge the `develop` branches to master and then push to GitHub.
 
 Fetch the current version of fost-aws, update to the latest libraries, test then push (if all of the tests pass).
 
-    ./dev aws clone latest test push
+    ./dev aws pull latest test push
