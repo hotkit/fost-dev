@@ -8,3 +8,8 @@ PROJECTS['fost-beanbag'] = {
     'libs': ['fost-beanbag'],
 }
 
+PROJECTS['fost-beanbag-seed'] = {
+    'source': 'git@github.com:KayEss/beanbag-seed.git',
+    'folder': 'beanbag-seed',
+    'libs': [], 'gitflow': False, 'targets': []
+}
