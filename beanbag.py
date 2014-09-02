@@ -11,5 +11,6 @@ PROJECTS['fost-beanbag'] = {
 PROJECTS['fost-beanbag-seed'] = {
     'source': 'git@github.com:KayEss/beanbag-seed.git',
     'folder': 'beanbag-seed',
-    'libs': [], 'gitflow': False, 'targets': []
+    'gitflow': False, 'test': False,
+    'libs': [], 'targets': [],
 }
