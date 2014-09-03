@@ -12,6 +12,7 @@ def clone():
                     git(folder, 'flow', 'init', '-d')
         else:
             git(folder, 'pull')
+            git(folder, 'remote', 'prune', 'origin')
         git(folder, 'submodule', 'init')
         git(folder, 'submodule', 'sync')
         git(folder, 'submodule', 'update')
