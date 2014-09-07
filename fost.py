@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from configuration import *
-import aws
 import beanbag
+import fost-aws
 import mengmom
 
 
