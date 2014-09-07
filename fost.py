@@ -2,6 +2,7 @@
 from configuration import *
 import beanbag
 import fost-aws
+import fost-meta
 import mengmom
 
 
@@ -10,9 +11,6 @@ for lib in ['fost-base', 'fost-internet', 'fost-orm',
     PROJECTS[lib] = dict(
         source='git@github.com:KayEss/%s-dev.git' % lib)
 
-PROJECTS['fost-meta'] = dict(
-    source='git@github.com:KayEss/fost-meta.git',
-    libs=[])
 if is_windows():
     PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL\\configure']
 else:
