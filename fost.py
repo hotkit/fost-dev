@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from configuration import *
 import beanbag
-import fost-aws
-import fost-meta
 import mengmom
+for lib in ['fost-aws', 'fost-meta']:
+    __import__(lib)
 
 
 for lib in ['fost-base', 'fost-internet', 'fost-orm',
