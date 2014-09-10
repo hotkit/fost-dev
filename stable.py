@@ -9,11 +9,10 @@ def stable():
                 for branch in ['develop', 'master']:
                     git(location, 'checkout', branch)
                     git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
-                git(location, 'merge', '--no-ff', 'develop')
+                    git(location, 'submodule', 'update')
+                git(location, 'merge', '--no-ff', 'develop', '-m',
+                    '"Merge from develop\n$(git diff develop --stat)"')
                 git(location, 'push')
-                for lib in configuration['libs']:
-                    subfolder = os.path.join(folder, lib)
-                    git(subfolder, 'push')
                 git(location, 'checkout', 'develop')
 
 
