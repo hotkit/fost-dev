@@ -22,7 +22,6 @@ def release():
         tagged = "../%s/%s" % (VERSION, folder)
         if not os.path.exists(tagged):
             worked('git', 'clone', '--recursive', '--branch', VERSION, folder, tagged)
-            git(tagged, "checkout", VERSION)
         if configuration.get('test', True):
             if configuration.has_key('post-clone'):
                 worked('cd', tagged, '&&', *configuration['post-clone'])
