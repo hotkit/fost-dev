@@ -15,7 +15,7 @@ def release():
                         git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
                 else:
                     git(location, 'merge', '--ff-only', 'remotes/origin/master')
-                git(location, "tag", VERSION)
+                git(location, "tag", VERSION, '-m', VERSION)
                 if configuration.get('gitflow', True):
                     git(location, 'checkout', 'develop')
             git(location, "push", "--tags")
