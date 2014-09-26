@@ -18,6 +18,7 @@ def release():
                 git(location, "tag", VERSION, '-m', VERSION)
                 if configuration.get('gitflow', True):
                     git(location, 'checkout', 'develop')
+                    git(location, 'merge', 'master', '--no-ff', '-m', VERSION)
             git(location, "push", "--tags")
         tagged = "../%s/%s" % (VERSION, folder)
         if not os.path.exists(tagged):
