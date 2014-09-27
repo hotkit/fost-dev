@@ -2,19 +2,15 @@
 from configuration import *
 import beanbag
 import mengmom
-for lib in ['fost-aws', 'fost-meta']:
+for lib in ['fost-aws', 'fost-meta', 'fost-postgres']:
     __import__(lib)
 
 
 for lib in ['fost-base', 'fost-internet', 'fost-orm',
-        'fost-postgres', 'fost-py', 'fost-windows']:
+        'fost-py', 'fost-windows']:
     PROJECTS[lib] = dict(
         source='git@github.com:KayEss/%s-dev.git' % lib)
 
-if is_windows():
-    PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL\\configure']
-else:
-    PROJECTS['fost-postgres']['post-clone'] = ['PostgreSQL/configure']
 PROJECTS['fost-windows']['test'] = False
 PROJECTS['hello'] = dict(
     source='git@github.com:KayEss/fost-hello.git',
