@@ -2,10 +2,8 @@ from configuration import *
 
 
 def latest():
-    git('Boost', 'checkout', 'master')
-    git('Boost', 'pull')
-    for project, folder, configuration in projects():
-        if configuration.get('gitflow', True):
+    def get_latest(gitflow, folder):
+        if gitflow:
             git(folder, 'checkout', 'develop')
         else:
             git(folder, 'checkout', 'master')
@@ -20,6 +18,9 @@ def latest():
                 name = submod.split(' ')[1]
                 git(folder, 'add', name)
                 git(folder, 'commit', '-m', '"$(git submodule summary %s)"' % name)
+    get_latest(False, ".")
+    for project, folder, configuration in projects():
+        get_latest(configuration.get('gitflow', True), folder)
 
 
 ACTIONS.append(latest)
