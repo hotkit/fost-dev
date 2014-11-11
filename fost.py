@@ -2,7 +2,7 @@
 from configuration import *
 import beanbag
 import mengmom
-for lib in ['fost-aws', 'fost-meta', 'fost-postgres']:
+for lib in ['fost-android', 'fost-aws', 'fost-meta', 'fost-postgres']:
     __import__(lib)
 
 
