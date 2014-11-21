@@ -4,6 +4,6 @@ from configuration import *
 
 PROJECTS['fost-android'] = dict(
     source='git@github.com:KayEss/fost-android.git',
-    libs=[],
+    libs=[], targets=[],
     test=False)
 
