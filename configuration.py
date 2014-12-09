@@ -5,7 +5,7 @@ import sys
 
 ARGS = []
 ACTIONS = []
-BOOST_VERSIONS = [40, 47, 52]
+BOOST_VERSIONS = [40, 47, 52, 57]
 OPTIONS = {'platform': None}
 PROJECTS = {}
 TARGETS = ['all', '']

@@ -1,3 +1,4 @@
+import re
 from configuration import *
 
 
@@ -6,7 +7,7 @@ def dotests():
         """
             Installs the right version of Boost for the platform.
         """
-        if not is_windows() and not version in ['lucid', 'precise', 'quantal', 'raring', 'saucy', 'trusty']:
+        if not is_windows() and not re.compile(r'[a-z]+').match(unicode(version)):
             if not os.path.isdir('Boost/1_%s_0' % version):
                 execute('Boost/build', version, '0')
             path = '%s/Boost/1_%s_0' % (directory, version)

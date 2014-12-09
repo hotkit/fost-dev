@@ -1,28 +1,28 @@
 from configuration import *
 
 
-def clone():
+def pull():
     for project, folder, configuration in projects():
         if not os.path.exists(folder):
             worked('git', 'clone', configuration['source'], folder)
             if configuration.get('gitflow', True):
-                if is_windows():
-                    git(folder, "checkout", "-b", "develop", "origin/develop")
-                else:
-                    git(folder, 'flow', 'init', '-d')
+                git(folder, 'flow', 'init', '-d')
         else:
+            if configuration.get('gitflow', True):
+                git(folder, 'checkout', 'develop')
+            else:
+                git(folder, 'checkout', 'master')
             git(folder, 'pull')
             git(folder, 'remote', 'prune', 'origin')
         git(folder, 'submodule', 'init')
-        git(folder, 'submodule', 'sync')
-        git(folder, 'submodule', 'update')
         if not is_windows():
             git(folder, 'submodule', 'foreach',
                 "\"(git branch -a | grep 'remotes/origin/develop$') && git flow init -d || true\"")
-            git(folder, 'submodule', 'update')
+        git(folder, 'submodule', 'sync', '--recursive')
+        git(folder, 'submodule', 'update', '--init', '--recursive')
         if configuration.has_key('post-clone'):
             worked('cd', folder, '&&', *configuration['post-clone'])
 
 
-ACTIONS.append(clone)
+ACTIONS.append(pull)
 
