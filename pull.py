@@ -5,10 +5,10 @@ def pull():
     for project, folder, configuration in projects():
         if not os.path.exists(folder):
             worked('git', 'clone', configuration['source'], folder)
-            if configuration.get('gitflow', True):
+            if configuration.get('gitflow', True) and not is_windows():
                 git(folder, 'flow', 'init', '-d')
         else:
-            if configuration.get('gitflow', True):
+            if configuration.get('gitflow', True) and not is_windows():
                 git(folder, 'checkout', 'develop')
             else:
                 git(folder, 'checkout', 'master')
