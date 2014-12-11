@@ -19,6 +19,9 @@ def latest():
             "\"(git branch -a | grep '. develop$' > /dev/null 2>&1)"
                 " && git checkout develop || git checkout master\"")
         git(folder, 'submodule', 'foreach', "\"git pull\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule init\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule sync --recursive\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule update --init --recursive\"")
         submodules(folder)
         for lib in libs:
             submodules(os.path.join(folder, lib))
