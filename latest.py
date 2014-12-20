@@ -8,7 +8,10 @@ def latest():
             if len(submod) and submod[0] == "+":
                 name = submod.split(' ')[1]
                 git(folder, 'add', name)
-                git(folder, 'commit', '-m', '"$(git submodule summary %s)"' % name)
+                with open('/tmp/m.txt', 'w') as t:
+                    t.write("Latest %s\n\n" % name)
+                git(folder, 'submodule', 'summary', name, '>> /tmp/m.txt')
+                git(folder, 'commit', '-F', '/tmp/m.txt')
     def get_latest(gitflow, folder, libs):
         if gitflow:
             git(folder, 'checkout', 'develop')
@@ -19,6 +22,9 @@ def latest():
             "\"(git branch -a | grep '. develop$' > /dev/null 2>&1)"
                 " && git checkout develop || git checkout master\"")
         git(folder, 'submodule', 'foreach', "\"git pull\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule init\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule sync --recursive\"")
+        git(folder, 'submodule', 'foreach', "\"git submodule update --init --recursive\"")
         submodules(folder)
         for lib in libs:
             submodules(os.path.join(folder, lib))
