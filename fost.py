@@ -2,14 +2,14 @@
 from configuration import *
 import beanbag
 import mengmom
-for lib in ['fost-android', 'fost-aws', 'fost-meta', 'fost-postgres']:
+for lib in ['fost-android', 'fost-aws', 'fost-meta', 'fost-postgres', 'fost-py']:
     __import__(lib)
 
 
-for lib in ['fost-base', 'fost-internet', 'fost-orm',
-        'fost-py', 'fost-windows']:
+for lib in ['fost-base', 'fost-internet', 'fost-orm', 'fost-windows']:
     PROJECTS[lib] = dict(
-        source='git@github.com:KayEss/%s-dev.git' % lib)
+        source='git@github.com:KayEss/%s-dev.git' % lib,
+        libs=[lib])
 
 PROJECTS['fost-windows']['test'] = False
 PROJECTS['hello'] = dict(
@@ -17,9 +17,4 @@ PROJECTS['hello'] = dict(
     folder='fost-hello',
     gitflow=False, libs=[],
     targets = [''])
-
-
-for project, configuration in PROJECTS.items():
-    if not configuration.has_key('libs'):
-        PROJECTS[project]['libs'] = [project]
 
