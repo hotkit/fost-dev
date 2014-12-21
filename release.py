@@ -5,7 +5,8 @@ from configuration import *
 VERSION = ARGS.pop(0)
 def release():
     for project, folder, configuration in projects():
-        for location in [folder] + [os.path.join(folder, lib) for lib in configuration['libs']]:
+        libfolders = [os.path.join(folder, lib) for lib in configuration.get('libs', [])]
+        for location in [folder] + libfolders:
             tags = git_capture(location, 'tag')
             if not VERSION in tags:
                 git(location, 'fetch', 'origin')
@@ -14,8 +15,9 @@ def release():
                         git(location, 'checkout', branch)
                         git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
                 else:
+                    git(location, 'checkout', 'master')
                     git(location, 'merge', '--ff-only', 'remotes/origin/master')
-                git(location, "tag", VERSION, '-m', VERSION)
+                git(location, "tag", '-a', '-m', VERSION, VERSION)
                 if configuration.get('gitflow', True):
                     git(location, 'checkout', 'develop')
                     git(location, 'merge', 'master', '--no-ff', '-m', VERSION)
