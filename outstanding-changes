@@ -1,8 +1,0 @@
-#!/bin/bash
-cd `dirname $0`
-
-for LIBRARY in fost-base fost-internet fost-aws fost-orm fost-py fost-postgres fost-web fost-windows fost-meta
-do
-    echo $LIBRARY
-    diff $LIBRARY/$LIBRARY/ChangeLog $LIBRARY-stable/$LIBRARY/ChangeLog
-done
