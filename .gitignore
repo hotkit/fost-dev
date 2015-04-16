@@ -1,6 +1,7 @@
 /AnimRay
 /beanbag
 /beanbag-seed
+/felspar.kdev4
 /fost-android
 /fost-aws
 /fost-base
@@ -11,5 +12,6 @@
 /fost-postgres
 /fost-py
 /fost-windows
+/.kdev4
 /mengmom
 *.pyc
