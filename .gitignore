@@ -12,6 +12,8 @@
 /fost-postgres
 /fost-py
 /fost-windows
+/fsnotify
 /.kdev4
 /mengmom
+/version
 *.pyc
