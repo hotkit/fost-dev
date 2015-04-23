@@ -6,7 +6,7 @@ platform('trusty')
 
 
 BOOST_VERSIONS.append('trusty')
-for v in xrange(35, 54):
+for v in xrange(35, 55):
     if v in BOOST_VERSIONS:
         BOOST_VERSIONS.remove(v)
 
