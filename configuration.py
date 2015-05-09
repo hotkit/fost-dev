@@ -10,6 +10,7 @@ OPTIONS = {'platform': None}
 PROJECTS = {}
 TARGETS = ['all', '']
 VARIANTS = ['debug', 'release']
+TOOLSETS = ['clang', 'gcc']
 
 
 def is_windows():

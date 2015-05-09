@@ -3,11 +3,13 @@ from configuration import *
 
 
 def dotests():
+    def platform_boost(version):
+        return re.compile(r'[a-z]+').match(unicode(version))
     def install_boost(directory, version):
         """
             Installs the right version of Boost for the platform.
         """
-        if not is_windows() and not re.compile(r'[a-z]+').match(unicode(version)):
+        if not is_windows() and not platform_boost(version):
             if not os.path.isdir('Boost/1_%s_0' % version):
                 execute('Boost/build', version, '0')
             path = '%s/Boost/1_%s_0' % (directory, version)
@@ -31,23 +33,26 @@ def dotests():
         if configuration.get('test', True) == False:
             continue
         directory = configuration.get('folder', project)
-        for boost in configuration.get('boost', BOOST_VERSIONS):
-            if not install_boost(directory, boost):
-                raise "Boost install failed"
-            else:
-                for variant in configuration.get('variants', VARIANTS):
-                    for target in configuration.get('targets', TARGETS):
-                        built += 1
-                        if not execute('./compile', directory, project, boost,  variant, target):
-                            failure.append([project, boost, variant, target])
-                        else:
-                            success.append([project, boost, variant, target])
-                            break
+        for toolset in configuration.get('toolsets', TOOLSETS):
+            for boost in configuration.get('boost', BOOST_VERSIONS):
+                if platform_boost(boost) and toolset != 'gcc':
+                    break
+                if not install_boost(directory, boost):
+                    raise "Boost install failed"
+                else:
+                    for variant in configuration.get('variants', VARIANTS):
+                        for target in configuration.get('targets', TARGETS):
+                            built += 1
+                            if not execute('./compile', directory, project, boost,  variant, target, toolset):
+                                failure.append([project, boost, variant, target, toolset])
+                            else:
+                                success.append([project, boost, variant, target, toolset])
+                                break
 
     def status(k, l):
-        for project, boost, variant, target in l:
+        for project, boost, variant, target, toolset in l:
             print k, project, "Boost", boost, \
-                "Variant:", variant, "Target:", target
+                "Toolset:", toolset, "Variant:", variant, "Target:", target
     status("Success", success)
     status("Failure", failure)
     print "Total built", built, "Total success", len(success)
