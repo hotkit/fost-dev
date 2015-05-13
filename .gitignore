@@ -15,5 +15,6 @@
 /fsnotify
 /.kdev4
 /mengmom
+/rask
 /version
 *.pyc
