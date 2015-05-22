@@ -10,7 +10,6 @@ def master():
             git(folder, 'pull')
             git(folder, 'remote', 'prune', 'origin')
         git(folder, 'submodule', 'init')
-        if not is_windows():
         git(folder, 'submodule', 'sync', '--recursive')
         git(folder, 'submodule', 'update', '--init', '--recursive')
         if configuration.has_key('post-clone'):
