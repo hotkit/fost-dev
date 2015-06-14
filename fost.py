@@ -7,10 +7,10 @@ for lib in ['fost-android', 'fost-aws', 'fost-base', 'fost-hello',
     __import__(lib)
 
 
-for lib in ['fost-orm', 'fost-windows']:
+for lib in ['fost-orm']: #, 'fost-windows']:
     PROJECTS[lib] = dict(
         source='git@github.com:KayEss/%s-dev.git' % lib,
         libs=[lib])
 
-PROJECTS['fost-windows']['test'] = False
+#PROJECTS['fost-windows']['test'] = False
 
