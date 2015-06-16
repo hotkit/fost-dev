@@ -43,7 +43,7 @@ def dotests():
                     for variant in configuration.get('variants', VARIANTS):
                         for target in configuration.get('targets', TARGETS):
                             built += 1
-                            if not execute('./compile', directory, project, boost,  variant, target, toolset):
+                            if not execute('./compile', directory, project, boost,  variant, toolset, target):
                                 failure.append([project, boost, variant, target, toolset])
                             else:
                                 success.append([project, boost, variant, target, toolset])
