@@ -11,7 +11,7 @@ def stable():
                     git(location, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
                     git(location, 'submodule', 'update')
                 git(location, 'merge', '--no-ff', 'develop', '-m',
-                    '"Merge from develop\n$(git diff develop --stat)"')
+                    '"Merge from develop\n\n$(git diff develop --stat)"')
                 git(location, 'push')
                 git(location, 'checkout', 'develop')
 
