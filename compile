@@ -11,4 +11,5 @@ cd `dirname $0`
 # Path is relative to the compile script at $1/$2
 export PREFIX=../dist-$3-$6
 
+set -x
 $1/$2/compile $4 $6 toolset=$5
