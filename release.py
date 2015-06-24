@@ -29,7 +29,7 @@ def release():
             if configuration.has_key('post-clone'):
                 worked('cd', tagged, '&&', *configuration['post-clone'])
             worked('%s/Boost/install %s' % (tagged, OPTIONS['platform']))
-            worked('./compile', tagged, project)
+            worked('./compile', tagged, project, OPTIONS['platform'], 'release', 'gcc')
 
 ACTIONS.append(release)
 
