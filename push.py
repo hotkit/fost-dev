@@ -6,7 +6,7 @@ def push():
     git('Boost', 'push')
     for project, folder, configuration in projects():
         git(folder, 'push')
-        for lib in configuration['libs']:
+        for lib in configuration.get('libs', []):
             subfolder = os.path.join(folder, lib)
             git(subfolder, 'push')
 
