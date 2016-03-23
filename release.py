@@ -21,15 +21,11 @@ def release():
                 if configuration.get('gitflow', True):
                     git(location, 'checkout', 'develop')
                     git(location, 'merge', 'master', '--no-ff', '-m', VERSION)
+            git(location, "push", "--all")
             git(location, "push", "--tags")
         tagged = "../%s/%s" % (VERSION, folder)
         if not os.path.exists(tagged):
             worked('git', 'clone', '--recursive', '--branch', VERSION, folder, tagged)
-        if configuration.get('test', True):
-            if configuration.has_key('post-clone'):
-                worked('cd', tagged, '&&', *configuration['post-clone'])
-            worked('%s/Boost/install %s' % (tagged, OPTIONS['platform']))
-            worked('./compile', tagged, project, OPTIONS['platform'], 'release', 'gcc')
 
 ACTIONS.append(release)
 
