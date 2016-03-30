@@ -1,7 +1,6 @@
 /AnimRay
 /beanbag
 /beanbag-seed
-/f5-threading
 /felspar.kdev4
 /fost-android
 /fost-aws
@@ -17,5 +16,7 @@
 /.kdev4
 /mengmom
 /rask
+/tamarind
+/threading
 /version
 *.pyc

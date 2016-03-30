@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from configuration import *
+import f5
 import beanbag
 import mengmom
-for lib in ['f5-threading', 'fost-android', 'fost-aws', 'fost-base',
+for lib in ['fost-android', 'fost-aws', 'fost-base',
         'fost-hello', 'fost-internet', 'fost-orm', 'fost-meta',
         'fost-postgres', 'fost-py']:
     __import__(lib)

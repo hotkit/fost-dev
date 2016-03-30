@@ -1,6 +1,7 @@
 from configuration import *
 
-PROJECTS['f5-threading'] = {
+PROJECTS['threading'] = {
         'source': 'git@github.com:KayEss/f5-threading.git',
-        'targets': [], 'test': False
+        'targets': [],
+        'test': False
     }
