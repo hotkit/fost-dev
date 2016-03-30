@@ -1,7 +1,8 @@
 #!/bin/bash
-for n in fost-aws/fost-aws fost-base/fost-base beanbag/fost-beanbag beanbag-seed fost-internet/fost-internet \
-        fost-hello fost-meta/fost-meta fost-orm/fost-orm fost-postgres/fost-postgres fost-py/fost-py \
-        mengmom/fost-web fost-windows/fost-windows
+for n in fost-aws/fost-aws fost-base/fost-base beanbag/fost-beanbag beanbag-seed \
+        fost-internet/fost-internet fost-hello fost-meta/fost-meta fost-orm/fost-orm \
+        fost-postgres/fost-postgres fost-py/fost-py mengmom/fost-web \
+        fost-windows/fost-windows f5-threading/threading
 do
     echo $n
     diff $1/$n/ChangeLog $2/$n/ChangeLog
