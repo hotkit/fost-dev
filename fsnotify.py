@@ -1,5 +1,8 @@
 from configuration import *
 
 PROJECTS['fsnotify'] = {
-        'targets': [], 'test': False
+        'source': 'git@github.com:KayEss/f5-fsnotify.git',
+        'gitflow': False,
+        'targets': [],
+        'test': False
     }

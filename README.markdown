@@ -6,11 +6,11 @@ It contains a location where the Boost library builds can be kept and scripts fo
 
 The main command is `./dev`. It takes a number of options that control what is going to be done and how it is done. The general form of the command is:
 
-    ./dev libraries options platform actions
+    ./dev <libraries> <options> <platform> <actions>
 
 ## Libraries ##
 
-Most of the libraries are still only in the `fost` collection, but fost-aws has also been split out to `aws`.
+Most of the libraries are still only in the `fost` collection, but they're getting split out. There is also a new `f5` grouping for the Fost 5 libraries and `allprojects` which includes everything.
 
 ## Options ##
 
