@@ -1,3 +1,6 @@
+# This file follows a different name convention because calling it
+# 'threading' breaks Python.
+
 from configuration import *
 
 PROJECTS['threading'] = {
