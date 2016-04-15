@@ -30,24 +30,28 @@ def dotests():
 
     built, success, failure = 0, [], []
     for project, configuration in PROJECTS.items():
-        if configuration.get('test', True) == False:
-            continue
+        runtests = configuration.get('test', True)
         directory = configuration.get('folder', project)
-        for toolset in configuration.get('toolsets', TOOLSETS):
-            for boost in configuration.get('boost', BOOST_VERSIONS):
-                if platform_boost(boost) and toolset != 'gcc':
-                    break
-                if not install_boost(directory, boost):
-                    raise "Boost install failed"
-                else:
-                    for variant in configuration.get('variants', VARIANTS):
-                        for target in configuration.get('targets', TARGETS):
-                            built += 1
-                            if not execute('./compile', directory, project, boost,  variant, toolset, target):
-                                failure.append([project, boost, variant, target, toolset])
-                            else:
-                                success.append([project, boost, variant, target, toolset])
-                                break
+        if runtests == False:
+            continue
+        elif runtests == True:
+            for toolset in configuration.get('toolsets', TOOLSETS):
+                for boost in configuration.get('boost', BOOST_VERSIONS):
+                    if platform_boost(boost) and toolset != 'gcc':
+                        break
+                    if not install_boost(directory, boost):
+                        raise "Boost install failed"
+                    else:
+                        for variant in configuration.get('variants', VARIANTS):
+                            for target in configuration.get('targets', TARGETS):
+                                built += 1
+                                if not execute('./compile', directory, project, boost,  variant, toolset, target):
+                                    failure.append([project, boost, variant, target, toolset])
+                                else:
+                                    success.append([project, boost, variant, target, toolset])
+                                    break
+        else:
+            assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
         for project, boost, variant, target, toolset in l:
