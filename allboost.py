@@ -2,6 +2,6 @@
 from configuration import *
 
 
-for v in range(55, 61):
+for v in range(55, 62):
     if v not in BOOST_VERSIONS:
         BOOST_VERSIONS.append(v)
