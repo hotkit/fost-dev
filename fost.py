@@ -3,6 +3,7 @@ from configuration import *
 import f5
 import beanbag
 import mengmom
+import wright
 for lib in ['fost-android', 'fost-aws', 'fost-base',
         'fost-hello', 'fost-internet', 'fost-orm', 'fost-meta',
         'fost-postgres', 'fost-py']:
