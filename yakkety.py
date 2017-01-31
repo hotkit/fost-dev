@@ -3,6 +3,3 @@ from configuration import *
 
 
 platform('yakkety')
-
-
-BOOST_VERSIONS.append('yakkety')

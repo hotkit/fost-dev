@@ -3,6 +3,3 @@ from configuration import *
 
 
 platform('xenial')
-
-
-BOOST_VERSIONS.append('xenial')

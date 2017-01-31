@@ -3,6 +3,3 @@ from configuration import *
 
 
 platform('wily')
-
-
-BOOST_VERSIONS.append('wily')
