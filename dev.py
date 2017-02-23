@@ -18,6 +18,8 @@ if __name__ == "__main__":
             name = subprocess.check_output(['lsb_release', '-cs']).strip()
             print "Guessing linux platform", name
             __import__(name)
+        elif sys.platform == 'darwin':
+            __import__('mac')
         elif sys.platform == 'win32':
             print "Guessing Windows platform"
             __import__('windows')
