@@ -5,6 +5,7 @@ from configuration import *
 platform('mac')
 
 
-if 37 in BOOST_VERSIONS:
-    BOOST_VERSIONS.remove(37)
-
+TOOLSETS.remove('clang')
+TOOLSETS.remove('gcc')
+TOOLSETS.append('darwin')
+TOOLSETS.append('darwin-clang')
