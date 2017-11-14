@@ -8,10 +8,13 @@ def latest():
             if len(submod) and submod[0] == "+":
                 name = submod.split(' ')[1]
                 git(folder, 'add', name)
-                with open('/tmp/m.txt', 'w') as t:
+                tmpdir = tempfile.mkdtemp()
+                msgfile = os.path.join(tmpdir, 'c.git.txt')
+                with open(msgfile, 'w') as t:
                     t.write("Latest %s\n\n" % name)
-                git(folder, 'submodule', 'summary', name, '>> /tmp/m.txt')
-                git(folder, 'commit', '-F', '/tmp/m.txt')
+                git(folder, 'submodule', 'summary', name, '>> %s' % (msgfile,))
+                git(folder, 'commit', '-F', msgfile)
+                shutil.rmtree(tmpdir)
     def get_latest(gitflow, folder, libs):
         if gitflow:
             git(folder, 'checkout', 'develop')

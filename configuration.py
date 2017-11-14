@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import sys
+import tempfile
 
 
 ARGS = []
@@ -50,9 +52,13 @@ def git_capture(directory, *args):
         Execute the git command and return it's output.
     """
     args = list(args)
-    args.append("> /tmp/c.git.txt")
+    tmpdir = tempfile.mkdtemp()
+    filename = os.path.join(tmpdir, 'c.git.txt')
+    args.append("> %s" % (filename,))
     git(directory, *args)
-    output = file('/tmp/c.git.txt').read()
+    with open(filename) as f:
+        output = f.read()
+    shutil.rmtree(tmpdir)
     print output
     return output
 
