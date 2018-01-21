@@ -19,7 +19,7 @@ def dotests():
             boost_folder = '%s/Boost/boost' % directory
             if not os.path.isdir(boost_folder):
                 os.symlink('../../Boost/boost', boost_folder)
-            if not os.path.isdir('%s/Boost/boost/include/boost-1_%s' % (directory, version)):
+            if not os.path.isdir('%s/Boost/boost/1_%s_0' % (directory, version)):
                 execute('%s/Boost/build' % directory, version, 0)
         if is_windows():
             if not os.path.isdir('Boost/1_%s_0' % version):
