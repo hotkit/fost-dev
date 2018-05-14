@@ -3,6 +3,9 @@ import os
 from distutils.dir_util import mkpath
 
 
+boost_versions = [(1, 59, 0), (1, 61, 0), (1, 62, 0), (1, 63, 0),
+    (1, 64 ,0), (1, 65, 0), (1, 66, 0), (1, 67, 0)]
+
 def dotests():
     built, success, failure = 0, [], []
     for project, configuration in PROJECTS.items():
@@ -12,7 +15,7 @@ def dotests():
             continue
         elif runtests == True:
             for toolset in TOOLSETS:
-                for bmajor, bminor, bpatch in [(1, 65, 0), (1, 66, 0)]:
+                for bmajor, bminor, bpatch in boost_versions:
                     bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
                     for variant in VARIANTS:
                         built += 1
