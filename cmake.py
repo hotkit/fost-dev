@@ -11,7 +11,7 @@ def dotests():
         if runtests == False:
             continue
         elif runtests == True:
-            for toolset in ['gcc', 'clang']:
+            for toolset in TOOLSETS:
                 for bmajor, bminor, bpatch in [(1, 65, 0), (1, 66, 0)]:
                     bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
                     for variant in ["Release", "Debug"]:
