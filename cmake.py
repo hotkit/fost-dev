@@ -14,14 +14,14 @@ def dotests():
             for toolset in TOOLSETS:
                 for bmajor, bminor, bpatch in [(1, 65, 0), (1, 66, 0)]:
                     bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
-                    for variant in ["Release", "Debug"]:
+                    for variant in VARIANTS:
                         built += 1
                         tname = toolset + '-' + bver + '-'+ variant
                         buildpath = '/'.join([project, 'build.tmp', tname])
                         mkpath(buildpath)
                         cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++']) + ['cmake', '../..', '-G', 'Ninja']
                         conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
-                        cmd1 = conf('CMAKE_BUILD_TYPE', variant)
+                        cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
                         cmd1 = conf('BOOST_VMAJOR', str(bmajor))
                         cmd1 = conf('BOOST_VMINOR', str(bminor))
                         cmd1 = conf('BOOST_VPATCH', str(bpatch))
