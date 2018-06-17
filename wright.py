@@ -4,4 +4,6 @@ from configuration import *
 
 PROJECTS['wright'] = {
     'source': 'git@github.com:KayEss/wright.git',
-    'libs': ['fost-wright']}
+    'libs': ['fost-wright'],
+    'toolsets': ['clang'],
+}
