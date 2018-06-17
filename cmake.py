@@ -1,6 +1,7 @@
 from configuration import *
-import os
 from distutils.dir_util import mkpath
+import os
+import sys
 
 
 def dotests():
@@ -15,7 +16,9 @@ def dotests():
                 for bmajor, bminor, bpatch in BOOST:
                     bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
                     for variant in VARIANTS:
-                        for target in configuration.get('make', MAKE):
+                        failed = False
+                        targets = configuration.get('make', MAKE)
+                        for target in targets:
                             built += 1
                             tname = toolset + '-' + bver + '-'+ variant
                             buildpath = '/'.join([project, 'build.tmp', tname])
@@ -28,18 +31,19 @@ def dotests():
                             cmd1 = conf('BOOST_VPATCH', str(bpatch))
                             cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-' + tname)
                             worked(*['cd', buildpath, '&&'] + cmd1)
-                            if execute('cd', buildpath, '&&', 'ninja', target):
-                                success.append([project, (bmajor, bminor, bpatch), variant, target, toolset])
-                            else:
-                                failure.append([project, (bmajor, bminor, bpatch), variant, target, toolset])
+                            if not execute('cd', buildpath, '&&', 'ninja', target):
+                                failure.append([project, (bmajor, bminor, bpatch), variant, [target], toolset])
+                                failed = True
                                 break
+                        if not failed:
+                            success.append([project, (bmajor, bminor, bpatch), variant, targets, toolset])
         else:
             assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
         print
-        for project, boost, variant, target, toolset in l:
-            print k, project, "Boost", boost, toolset, variant, target
+        for project, boost, variant, targets, toolset in l:
+            print k, project, "Boost", boost, toolset, variant, ', '.join([t or "''" for t in targets])
     status("Success", success)
     status("Failure", failure)
     print "\nTotal built", built, "Total success", len(success)
