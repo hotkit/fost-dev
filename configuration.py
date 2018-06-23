@@ -16,7 +16,7 @@ BOOST = [(1, 62, 0)]
 OPTIONS = {'platform': None}
 PROJECTS = {}
 TARGETS = ['all', '']
-MAKE = ['', 'check', 'stress', 'install']
+MAKE = ['', 'examples', 'check', 'stress', 'install']
 VARIANTS = ['debug', 'release']
 TOOLSETS = ['clang', 'gcc']
 

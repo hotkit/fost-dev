@@ -43,7 +43,8 @@ def dotests():
     def status(k, l):
         print
         for project, boost, variant, targets, toolset in l:
-            print k, project, "Boost", boost, toolset, variant, ', '.join([t or "''" for t in targets])
+            tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
+            print k, project, "Boost", boost, toolset, variant, tmsg
     status("Success", success)
     status("Failure", failure)
     print "\nTotal built", built, "Total success", len(success)
