@@ -1,10 +1,33 @@
 from configuration import *
 from distutils.dir_util import mkpath
 import os
+import re
 import sys
 
 
 def dotests():
+    def platform_boost(version):
+        return re.compile(r'[a-z]+').match(unicode(version))
+    def install_boost(directory, version):
+        """
+            Installs the right version of Boost for the platform.
+        """
+        if not is_windows() and not platform_boost(version):
+            if not os.path.isdir('Boost/1_%s_0' % version):
+                execute('Boost/build', version, '0')
+            path = '%s/Boost/1_%s_0' % (directory, version)
+            if not os.path.isdir(path):
+                print "Soft-linking to", path
+                os.symlink('../../Boost/1_%s_0' % version, path)
+            boost_folder = '%s/Boost/boost' % directory
+            if not os.path.isdir(boost_folder):
+                os.symlink('../../Boost/boost', boost_folder)
+            if not os.path.isdir('%s/Boost/boost/1_%s_0' % (directory, version)):
+                execute('%s/Boost/build' % directory, version, 0)
+        if is_windows():
+            if not os.path.isdir('Boost/1_%s_0' % version):
+                execute('Boost\\build', version, '0')
+
     built, success, failure = 0, [], []
     for project, configuration in PROJECTS.items():
         runtests = configuration.get('cmake', True)
@@ -14,6 +37,9 @@ def dotests():
         elif runtests == True:
             for toolset in TOOLSETS:
                 for bmajor, bminor, bpatch in BOOST:
+                    if platform_boost(bminor) and toolset != 'gcc':
+                        break
+                    install_boost(directory, bminor)
                     bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
                     for variant in VARIANTS:
                         failed = False
