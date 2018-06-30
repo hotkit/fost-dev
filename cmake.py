@@ -55,7 +55,7 @@ def dotests():
                             cmd1 = conf('BOOST_VMAJOR', str(bmajor))
                             cmd1 = conf('BOOST_VMINOR', str(bminor))
                             cmd1 = conf('BOOST_VPATCH', str(bpatch))
-                            cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-' + tname)
+                            cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
                             worked(*['cd', buildpath, '&&'] + cmd1)
                             if not execute('cd', buildpath, '&&', 'ninja', target):
                                 failure.append([project, (bmajor, bminor, bpatch), variant, [target], toolset])
