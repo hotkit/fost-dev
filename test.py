@@ -1,5 +1,8 @@
-import re
 from configuration import *
+from distutils.dir_util import mkpath
+import os
+import re
+import sys
 
 
 def dotests():
@@ -24,45 +27,56 @@ def dotests():
         if is_windows():
             if not os.path.isdir('Boost/1_%s_0' % version):
                 execute('Boost\\build', version, '0')
-            return execute('%s/Boost/install' % directory, version, 0, '../../Boost')
-        else:
-            return execute('%s/Boost/install' % directory, version, 0)
 
     built, success, failure = 0, [], []
     for project, configuration in PROJECTS.items():
-        runtests = configuration.get('test', True)
+        runtests = configuration.get('cmake', True)
         directory = configuration.get('folder', project)
         if runtests == False:
             continue
         elif runtests == True:
-            for toolset in configuration.get('toolsets', TOOLSETS):
-                for boost in configuration.get('boost', BOOST_VERSIONS):
-                    if platform_boost(boost) and toolset != 'gcc':
+            for toolset in TOOLSETS:
+                for bmajor, bminor, bpatch in BOOST:
+                    if platform_boost(bminor) and toolset != 'gcc':
                         break
-                    if not install_boost(directory, boost):
-                        raise "Boost install failed"
-                    else:
-                        for variant in configuration.get('variants', VARIANTS):
-                            for target in configuration.get('targets', TARGETS):
-                                built += 1
-                                if not execute('./compile', directory, project, boost,  variant, toolset, target):
-                                    failure.append([project, boost, variant, target, toolset])
-                                else:
-                                    success.append([project, boost, variant, target, toolset])
-                                    break
+                    install_boost(directory, bminor)
+                    bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
+                    for variant in VARIANTS:
+                        failed = False
+                        targets = configuration.get('make', MAKE)
+                        for target in targets:
+                            built += 1
+                            tname = toolset + '-' + bver + '-'+ variant
+                            buildpath = '/'.join([directory, 'build.tmp', tname])
+                            mkpath(buildpath)
+                            cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++']) + ['cmake', '../..', '-G', 'Ninja']
+                            conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
+                            cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
+                            cmd1 = conf('BOOST_VMAJOR', str(bmajor))
+                            cmd1 = conf('BOOST_VMINOR', str(bminor))
+                            cmd1 = conf('BOOST_VPATCH', str(bpatch))
+                            cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
+                            worked(*['cd', buildpath, '&&'] + cmd1)
+                            if not execute('cd', buildpath, '&&', 'ninja', target):
+                                failure.append([project, (bmajor, bminor, bpatch), variant, [target], toolset])
+                                failed = True
+                                break
+                        if not failed:
+                            success.append([project, (bmajor, bminor, bpatch), variant, targets, toolset])
         else:
             assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
-        for project, boost, variant, target, toolset in l:
-            print k, project, "Boost", boost, \
-                "Toolset:", toolset, "Variant:", variant, "Target:", target
+        print
+        for project, boost, variant, targets, toolset in l:
+            tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
+            print k, project, "Boost", boost, toolset, variant, tmsg
     status("Success", success)
     status("Failure", failure)
-    print "Total built", built, "Total success", len(success)
-
-    assert len(failure) == 0, "At least one build failed"
+    print "\nTotal built", built, "Total success", len(success)
+    if len(failure):
+        print("At least one build failed")
+        sys.exit(2)
 
 
 ACTIONS.append(dotests)
-

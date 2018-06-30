@@ -6,6 +6,4 @@ for v in range(59, 68):
         BOOST_VERSIONS.append(v)
 
 ## (1, 62, 0) is already in [configure.py](./configure.py)
-BOOST += [(1, 59, 0), (1, 61, 0), (1, 63, 0),
-    (1, 64 ,0), (1, 65, 0), (1, 66, 0), (1, 67, 0)]
-
+BOOST += [(1, 63, 0), (1, 64 ,0), (1, 65, 0), (1, 66, 0), (1, 67, 0)]
