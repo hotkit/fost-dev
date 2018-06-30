@@ -47,7 +47,7 @@ def dotests():
                         for target in targets:
                             built += 1
                             tname = toolset + '-' + bver + '-'+ variant
-                            buildpath = '/'.join([project, 'build.tmp', tname])
+                            buildpath = '/'.join([directory, 'build.tmp', tname])
                             mkpath(buildpath)
                             cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++']) + ['cmake', '../..', '-G', 'Ninja']
                             conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
