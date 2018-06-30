@@ -4,6 +4,6 @@ import f5
 import beanbag
 import mengmom
 import wright
-for lib in ['fost-base', 'fost-hello', 'fost-meta', 'fost-postgres', 'fost-py']:
+for lib in ['fost-base', 'fost-hello', 'fost-meta']:
     __import__(lib)
 
