@@ -12,6 +12,7 @@ def dotests():
         """
             Installs the right version of Boost for the platform.
         """
+        if not os.path.exists(os.path.join(directory, 'Boost')): return
         if not is_windows() and not platform_boost(version):
             if not os.path.isdir('Boost/1_%s_0' % version):
                 execute('Boost/build', version, '0')
@@ -21,6 +22,7 @@ def dotests():
                 os.symlink('../../Boost/1_%s_0' % version, path)
             boost_folder = '%s/Boost/boost' % directory
             if not os.path.isdir(boost_folder):
+                print "Soft-linking to", boost_folder
                 os.symlink('../../Boost/boost', boost_folder)
             if not os.path.isdir('%s/Boost/boost/1_%s_0' % (directory, version)):
                 execute('%s/Boost/build' % directory, version, 0)
