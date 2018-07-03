@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from configuration import *
-import f5
 import beanbag
 import mengmom
 import wright
