@@ -3,6 +3,6 @@ from configuration import *
 import beanbag
 import mengmom
 import wright
-for lib in ['fost-base', 'fost-hello', 'fost-meta']:
+for lib in ['fost-hello', 'fost-meta']:
     __import__(lib)
 
