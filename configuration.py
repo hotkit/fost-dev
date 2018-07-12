@@ -8,10 +8,8 @@ import tempfile
 ARGS = []
 ACTIONS = []
 
-## This is the old version of the BOOST configuration
-BOOST_VERSIONS = [62]
 ## This is now used by the cmake build version
-BOOST = [(1, 62, 0)]
+BOOST = [(None, None, None)]
 
 OPTIONS = {'platform': None}
 PROJECTS = {}
