@@ -14,7 +14,7 @@ def dotests():
         """
             Installs the right version of Boost for the platform.
         """
-        if not uses_boost(directory): return
+        if not uses_boost(directory) or not version: return
         if not is_windows() and not platform_boost(version):
             if not os.path.isdir('Boost/1_%s_0' % version):
                 execute('Boost/build', version, '0')
@@ -44,7 +44,10 @@ def dotests():
                     if platform_boost(bminor) and toolset != 'gcc':
                         break
                     install_boost(directory, bminor)
-                    bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
+                    if bmajor and bminor:
+                        bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
+                    else:
+                        bver = ''
                     for variant in VARIANTS:
                         failed = False
                         targets = configuration.get('make', MAKE)
@@ -55,9 +58,9 @@ def dotests():
                         conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
                         cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
                         if uses_boost(directory):
-                            cmd1 = conf('BOOST_VMAJOR', str(bmajor))
-                            cmd1 = conf('BOOST_VMINOR', str(bminor))
-                            cmd1 = conf('BOOST_VPATCH', str(bpatch))
+                            if bmajor: cmd1 = conf('BOOST_VMAJOR', str(bmajor))
+                            if bminor: cmd1 = conf('BOOST_VMINOR', str(bminor))
+                            if bpatch: cmd1 = conf('BOOST_VPATCH', str(bpatch))
                         cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
                         worked(*['cd', buildpath, '&&'] + cmd1)
                         for target in targets:
