@@ -4,7 +4,8 @@ from configuration import *
 
 PROJECTS['test-android'] = dict(
     source='git@github.com:KayEss/test-android.git',
-    libs=['fost-android-ndk'],
+    gitflow=False,
+    libs=['fost-android-ndk', 'fost-android-java'],
     targets=[],
     test=False)
 
