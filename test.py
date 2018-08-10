@@ -54,7 +54,9 @@ def dotests():
                         tname = toolset + '-' + bver + '-'+ variant
                         buildpath = '/'.join([directory, 'build.tmp', tname])
                         mkpath(buildpath)
-                        cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++']) + ['cmake', '../..', '-G', 'Ninja']
+                        cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++'])
+                        cmd1 += CMAKE
+                        cmd1 += ['cmake', '../..', '-G', 'Ninja']
                         conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
                         cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
                         if uses_boost(directory):
