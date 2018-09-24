@@ -2,10 +2,11 @@
 
 # Ordering: Most non-fost libraries and applications for, then fost-* libs in
 # alphabetical order of library. Finally seed and demo apps.
-for n in cord threading mengmom/fostgres fost-aws/fost-aws fost-base/fost-base \
-        beanbag/fost-beanbag fost-internet/fost-internet fost-meta/fost-meta \
-        fost-orm/fost-orm fost-postgres/fost-postgres fost-py/fost-py mengmom/fost-web \
-        fost-windows/fost-windows wright/fost-wright beanbag-seed fost-hello
+for n in cord threading mengmom/fostgres mengmom/odin fost-aws/fost-aws \
+        fost-base/fost-base beanbag/fost-beanbag fost-internet/fost-internet \
+        fost-meta/fost-meta fost-orm/fost-orm fost-postgres/fost-postgres \
+        fost-py/fost-py mengmom/fost-web fost-windows/fost-windows \
+        wright/fost-wright beanbag-seed fost-hello
 do
     echo $n
     diff --new-file $1/$n/ChangeLog $2/$n/ChangeLog
