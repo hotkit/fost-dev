@@ -1,7 +1,8 @@
 #!/bin/bash
 
-for n in cord threading fost-base fost-aws fost-beanbag fost-internet \
-        fost-meta fost-postgres fost-web fost-wright fostgres odin
+for n in cord threading json-schema fost-base fost-aws fost-beanbag \
+        fost-internet fost-meta fost-postgres fost-web fost-wright \
+        fostgres odin
 do
     echo $n
     diff --new-file $1/fost-meta/$n/ChangeLog $2/fost-meta/$n/ChangeLog
