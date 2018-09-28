@@ -15,5 +15,8 @@ def remove_project(pname):
         print "To include it specify it directoy on the command line."
         del PROJECTS[pname]
 
-for bv in BOOST:
-    if bv < (1, 65, 0): BOOST.remove(bv)
+i = len(BOOST) - 1
+while i >= 0:
+    if BOOST[i][0] and BOOST[i] < (1, 65, 0):
+        del BOOST[i]
+    i -= 1
