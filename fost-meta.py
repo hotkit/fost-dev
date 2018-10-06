@@ -8,9 +8,3 @@ PROJECTS['fost-meta'] = dict(
               'odin', 'threading'],
     )
 
-
-if is_windows():
-    PROJECTS['fost-meta']['post-clone'] = ['PostgreSQL\\configure']
-else:
-    PROJECTS['fost-meta']['post-clone'] = ['PostgreSQL/configure']
-
