@@ -16,6 +16,7 @@ PROJECTS = {}
 TARGETS = ['all', '']
 MAKE = ['', 'examples', 'check', 'stress', 'install']
 CMAKE = []
+CMAKE_POST = []
 VARIANTS = ['debug', 'release']
 TOOLSETS = ['clang', 'gcc']
 

@@ -7,7 +7,10 @@ platform('mac')
 
 TOOLSETS.remove('gcc')
 
-CMAKE.append('CXXFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib -Wno-unused-command-line-argument"')
+CMAKE.append('CXXFLAGS="-I/usr/local/opt/openssl/include '
+    '-L/usr/local/opt/openssl/lib '
+    '-Wno-unused-command-line-argument"')
+CMAKE_POST.append('-DSKIP_BUILD_TEST=ON')
 
 def remove_project(pname):
     if pname in PROJECTS and pname not in sys.argv:
