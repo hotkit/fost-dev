@@ -1,15 +1,16 @@
-from configuration import *
-from distutils.dir_util import mkpath
 import os
 import re
 import sys
+from distutils.dir_util import mkpath
+
+from configuration import *
 
 
 def dotests():
     def uses_boost(directory):
         return os.path.exists(os.path.join(directory, 'Boost'))
     def platform_boost(version):
-        return re.compile(r'[a-z]+').match(unicode(version))
+        return re.compile(r'[a-z]+').match(str(version))
     def install_boost(directory, version, patch):
         """
             Installs the right version of Boost for the platform.
@@ -20,11 +21,11 @@ def dotests():
                 execute('Boost/build', version, patch)
             path = '%s/Boost/1_%s_%s' % (directory, version, patch)
             if not os.path.isdir(path):
-                print "Soft-linking to", path
+                print("Soft-linking to {}".format(path))
                 os.symlink('../../Boost/1_%s_%s' % (version, patch), path)
             boost_folder = '%s/Boost/boost' % directory
             if not os.path.isdir(boost_folder):
-                print "Soft-linking to", boost_folder
+                print("Soft-linking to {}".format(boost_folder))
                 os.symlink('../../Boost/boost', boost_folder)
             if not os.path.isdir('%s/Boost/boost/1_%s_%s' % (directory, version, patch)):
                 execute('%s/Boost/build' % directory, version, patch)
@@ -78,13 +79,13 @@ def dotests():
             assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
-        print
+        print()
         for project, boost, variant, targets, toolset in l:
             tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
-            print k, project, "Boost", boost, toolset, variant, tmsg
+            print('{} {} Boost {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg))
     status("Success", success)
     status("Failure", failure)
-    print "\nTotal built", built, "Total success", len(success)
+    print('\nTotal build {} Total success {}'.format(built, len(success)))
     if len(failure):
         print("At least one build failed")
         sys.exit(2)
