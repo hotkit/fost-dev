@@ -4,7 +4,6 @@ import shutil
 import sys
 import tempfile
 
-
 ARGS = []
 ACTIONS = []
 
@@ -35,7 +34,7 @@ def execute(program, *args):
     if is_windows():
         program = program.replace('/', '\\')
     command = '%s %s' % (program, ' '.join([str(a) for a in args]))
-    print "++", command
+    print('++ {}'.format(command))
     return os.system(command) == 0
 
 
@@ -65,7 +64,7 @@ def git_capture(directory, *args):
     with open(filename) as f:
         output = f.read()
     shutil.rmtree(tmpdir)
-    print output
+    print(output)
     return output
 
 
@@ -83,4 +82,3 @@ def platform(name):
         Set the platform name.
     """
     OPTIONS['platform'] = name
-
