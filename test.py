@@ -79,7 +79,7 @@ def dotests():
             assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
-        print()
+        print('')
         for project, boost, variant, targets, toolset in l:
             tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
             print('{} {} Boost {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg))
