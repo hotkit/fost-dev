@@ -6,5 +6,6 @@ PROJECTS['animray'] = dict(
     source='git@github.com:KayEss/AnimRay.git',
     folder='AnimRay',
     libs=[],
-    toolsets=['clang'])
+    make=['', 'check', 'install'],
+)
 
