@@ -50,39 +50,43 @@ def dotests():
                     else:
                         bver = ''
                     for variant in VARIANTS:
-                        failed = False
-                        targets = configuration.get('make', MAKE)
-                        tname = toolset + '-' + bver + '-'+ variant
-                        buildpath = '/'.join([directory, 'build.tmp', tname])
-                        mkpath(buildpath)
-                        cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++'])
-                        cmd1 += CMAKE
-                        cmd1 += ['cmake', '../..', '-G', 'Ninja']
-                        cmd1 += CMAKE_POST
-                        conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
-                        cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
-                        if uses_boost(directory):
-                            if bmajor: cmd1 = conf('BOOST_VMAJOR', str(bmajor))
-                            if bminor: cmd1 = conf('BOOST_VMINOR', str(bminor))
-                            if bpatch: cmd1 = conf('BOOST_VPATCH', str(bpatch))
-                        cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
-                        worked(*['cd', buildpath, '&&'] + cmd1)
-                        for target in targets:
-                            built += 1
-                            if not execute('cd', buildpath, '&&', 'ninja', target):
-                                failure.append([project, (bmajor, bminor, bpatch), variant, [target], toolset])
-                                failed = True
-                                break
-                        if not failed:
-                            success.append([project, (bmajor, bminor, bpatch), variant, targets, toolset])
+                        for mode_name, mode_opts in MODES[toolset].items():
+                            failed = False
+                            targets = configuration.get('make', MAKE)
+                            tname = toolset + '-' + bver + '-' + variant
+                            if mode_name: tname += '-' + mode_name
+                            buildpath = '/'.join([directory, 'build.tmp', tname])
+                            mkpath(buildpath)
+                            cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++'])
+                            cmd1 += mode_opts[0]
+                            cmd1 += CMAKE
+                            cmd1 += ['cmake', '../..', '-G', 'Ninja']
+                            cmd1 += CMAKE_POST
+                            cmd1 += mode_opts[1]
+                            conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
+                            cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
+                            if uses_boost(directory):
+                                if bmajor: cmd1 = conf('BOOST_VMAJOR', str(bmajor))
+                                if bminor: cmd1 = conf('BOOST_VMINOR', str(bminor))
+                                if bpatch: cmd1 = conf('BOOST_VPATCH', str(bpatch))
+                            cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
+                            worked(*['cd', buildpath, '&&'] + cmd1)
+                            for target in targets:
+                                built += 1
+                                if not execute('cd', buildpath, '&&', 'ninja', target):
+                                    failure.append([project, (bmajor, bminor, bpatch), variant, [target], toolset, mode_name])
+                                    failed = True
+                                    break
+                            if not failed:
+                                success.append([project, (bmajor, bminor, bpatch), variant, targets, toolset, mode_name])
         else:
             assert execute('cd', project, '&&', runtests)
 
     def status(k, l):
         print('')
-        for project, boost, variant, targets, toolset in l:
+        for project, boost, variant, targets, toolset, mode in l:
             tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
-            print('{} {} Boost {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg))
+            print('{} {} Boost {} {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg, mode))
     status("Success", success)
     status("Failure", failure)
     print('\nTotal build {} Total success {}'.format(built, len(success)))

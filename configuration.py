@@ -18,7 +18,13 @@ CMAKE = []
 CMAKE_POST = []
 VARIANTS = ['debug', 'release']
 TOOLSETS = ['clang', 'gcc']
-
+MODES = {
+    'clang': {
+       '':  ([], []),
+    },
+    'gcc': {
+        '': ([], []),
+    }}
 
 def is_windows():
     """
