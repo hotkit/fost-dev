@@ -15,7 +15,7 @@ PROJECTS = {}
 TARGETS = ['all', '']
 MAKE = ['', 'install']
 CMAKE = []
-CMAKE_POST = []
+CMAKE_POST = ['-DSKIP_BUILD_TEST=ON']
 VARIANTS = ['debug', 'release']
 TOOLSETS = ['clang', 'gcc']
 MODES = {
