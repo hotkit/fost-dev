@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 set -ex
-
 cd $1
+
 git fetch
 git checkout develop
 git merge --ff-only remotes/origin/develop
 git checkout master
 git merge --ff-only remotes/origin/master
-git merge --no-ff develop -m "Merge from develop
+git merge --ff-only develop
 
-$(git diff develop --stat)"
 git push
 git checkout develop
