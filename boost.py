@@ -2,5 +2,5 @@
 from configuration import *
 
 
-BOOST_VERSIONS.append(ARGS.pop(0))
+BOOST.append([int(p) for p in ARGS.pop(0).split('.')])
 
