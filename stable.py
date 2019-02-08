@@ -9,10 +9,11 @@ def stable():
                 git(folder, 'checkout', branch)
                 git(folder, 'merge', '--ff-only', 'remotes/origin/%s' % branch)
                 git(folder, 'submodule', 'update', '--init', '--recursive')
-            git(folder, 'merge', '--no-ff', 'develop', '-m',
-                '"Merge from develop\n\n$(git diff develop --stat)"')
+            git(folder, 'merge', '--ff-only', 'develop')
             git(folder, 'push')
             git(folder, 'checkout', 'develop')
+            git(folder, 'merge', 'master', '--ff-only')
+            git(folder, 'push')
 
 
 ACTIONS.append(stable)
