@@ -19,6 +19,6 @@ def remove_project(pname):
 
 i = len(BOOST) - 1
 while i >= 0:
-    if BOOST[i][0] and BOOST[i] < (1, 65, 0):
+    if BOOST[i][0] and BOOST[i] < (1, 65, 0) or BOOST[i][1] == 66:
         del BOOST[i]
     i -= 1
