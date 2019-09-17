@@ -3,7 +3,7 @@ from configuration import *
 
 
 PROJECTS['test-ios'] = dict(
-    source='git@github.com:KayEss/test-ios.git',
+    source='git@github.com:hotkit/test-ios.git',
     gitflow=False,
     targets=[],
     test=False)

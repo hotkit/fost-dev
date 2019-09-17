@@ -5,7 +5,7 @@ for n in f5-cord f5-threading json-schema fost-base fost-aws \
         fostgres odin
 do
     echo $n
-    [ -d $1/$n ] || git clone git@github.com:KayEss/$n -b $(basename $1) $1/$n
-    [ -d $2/$n ] || git clone git@github.com:KayEss/$n -b $(basename $2) $2/$n
+    [ -d $1/$n ] || git clone git@github.com:hotkit/$n -b $(basename $1) $1/$n
+    [ -d $2/$n ] || git clone git@github.com:hotkit/$n -b $(basename $2) $2/$n
     diff --new-file $1/$n/ChangeLog $2/$n/ChangeLog
 done

@@ -3,7 +3,7 @@ from configuration import *
 
 
 PROJECTS['hello'] = dict(
-    source='git@github.com:KayEss/fost-hello.git',
+    source='git@github.com:hotkit/fost-hello.git',
     folder="fost-hello",
     gitflow=False, libs=[],
     targets = [''])

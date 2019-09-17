@@ -3,6 +3,6 @@ from configuration import *
 
 
 PROJECTS['wright'] = {
-    'source': 'git@github.com:KayEss/wright.git',
+    'source': 'git@github.com:hotkit/wright.git',
     'libs': ['fost-wright'],
 }
