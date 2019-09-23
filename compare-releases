@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for n in f5-cord f5-threading json-schema fost-base fost-aws \
+for n in cord threading json-schema fost-base fost-aws \
         fost-beanbag fost-internet fost-postgres fost-web fost-wright \
         fostgres odin
 do
