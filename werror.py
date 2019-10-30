@@ -1,4 +1,4 @@
-from configuration import MODES
+from configuration import Mode, MODES
 
-MODES['clang']['werror'] = (['CXXFLAGS="-Werror"'], [])
-MODES['gcc']['werror'] = (['CXXFLAGS="-Werror"'], [])
+MODES['clang']['werror'] = Mode(env=['CXXFLAGS="-Werror"'])
+MODES['gcc']['werror'] = Mode(env=['CXXFLAGS="-Werror"'])

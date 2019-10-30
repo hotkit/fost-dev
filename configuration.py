@@ -4,6 +4,13 @@ import shutil
 import sys
 import tempfile
 
+
+class Mode:
+    def __init__(self, env = [], cmake = []):
+        self.env = env
+        self.cmake = cmake
+
+
 ARGS = []
 ACTIONS = []
 
@@ -20,10 +27,10 @@ VARIANTS = ['debug', 'release']
 TOOLSETS = ['clang', 'gcc']
 MODES = {
     'clang': {
-       '':  ([], []),
+       '':  Mode(),
     },
     'gcc': {
-        '': ([], []),
+        '': Mode(),
     }}
 
 def is_windows():
