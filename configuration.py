@@ -6,9 +6,11 @@ import tempfile
 
 
 class Mode:
-    def __init__(self, env = [], cmake = []):
-        self.env = env
-        self.cmake = cmake
+    def __init__(self, env=None, cmake=None, boost=None, suffix=None):
+        self.env = env or []
+        self.cmake = cmake or []
+        self.boost = boost or []
+        self.suffix = suffix or ''
 
 
 ARGS = []

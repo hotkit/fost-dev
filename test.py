@@ -14,27 +14,33 @@ def dotests():
         return os.path.exists(os.path.join(directory, 'Boost'))
     def platform_boost(version):
         return re.compile(r'[a-z]+').match(str(version))
-    def install_boost(directory, version, patch):
+    def install_boost(directory, toolset, variant, version, patch, suffix):
         """
             Installs the right version of Boost for the platform.
         """
         if not uses_boost(directory) or not version: return
         if not is_windows() and not platform_boost(version):
-            if not os.path.isdir('Boost/1_%s_%s' % (version, patch)):
-                execute('Boost/build', version, patch)
-            path = '%s/Boost/1_%s_%s' % (directory, version, patch)
+            if not os.path.isdir('Boost/boost'):
+                os.mkdir('Boost/boost')
+            if not os.path.isdir('Boost/1_%s_%s%s' % (version, patch, suffix)):
+                worked('Boost/download', '1', version, patch, suffix)
+                worked('Boost/bootstrap', '1', version, patch, suffix)
+            path = '%s/Boost/1_%s_%s%s' % (directory, version, patch, suffix)
             if not os.path.isdir(path):
                 print("Soft-linking to {}".format(path))
-                os.symlink('../../Boost/1_%s_%s' % (version, patch), path)
+                os.symlink('../../Boost/1_%s_%s%s' % (version, patch, suffix), path)
             boost_folder = '%s/Boost/boost' % directory
             if not os.path.isdir(boost_folder):
                 print("Soft-linking to {}".format(boost_folder))
                 os.symlink('../../Boost/boost', boost_folder)
-            if not os.path.isdir('%s/Boost/boost/1_%s_%s' % (directory, version, patch)):
-                execute('%s/Boost/build' % directory, version, patch)
         if is_windows():
             if not os.path.isdir('Boost/1_%s_%s' % (version, patch)):
                 execute('Boost\\build', version, patch)
+    def mode_boost(mode, boost):
+        if not len(mode.boost): return boost
+        print mode, mode.boost, boost
+        inter = set(mode.boost).intersection(set(boost))
+        return [v for v in boost if v in inter]
 
     built, success, failure = 0, [], []
     for project, configuration in PROJECTS.items():
@@ -45,15 +51,16 @@ def dotests():
         elif runtests == True:
             for toolset in TOOLSETS:
                 for mode_name, mode_opts in MODES[toolset].items():
-                    for bmajor, bminor, bpatch in BOOST:
-                        if platform_boost(bminor) and toolset != 'gcc':
-                            break
-                        install_boost(directory, bminor, bpatch)
-                        if bmajor and bminor:
-                            bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
-                        else:
-                            bver = ''
+                    for bmajor, bminor, bpatch in mode_boost(mode_opts, BOOST):
                         for variant in VARIANTS:
+                            if platform_boost(bminor) and toolset != 'gcc':
+                                break
+                            install_boost(directory, toolset, variant,
+                                          bminor, bpatch, mode_opts.suffix)
+                            if bmajor and bminor:
+                                bver = "%d.%d.%d" % (bmajor, bminor, bpatch)
+                            else:
+                                bver = ''
                             failed = False
                             targets = configuration.get('make', MAKE)
                             tname = toolset + '-' + bver + '-' + variant
@@ -73,6 +80,8 @@ def dotests():
                                 if bmajor: cmd1 = conf('BOOST_VMAJOR', str(bmajor))
                                 if bminor: cmd1 = conf('BOOST_VMINOR', str(bminor))
                                 if bpatch: cmd1 = conf('BOOST_VPATCH', str(bpatch))
+                                if mode_opts.suffix:
+                                    cmd1 = conf('BOOST_DIRECTORY_SUFFIX', mode_opts.suffix)
                             cmd1 = conf('CMAKE_INSTALL_PREFIX', '../../dist-test/' + tname)
                             worked(*['cd', buildpath, '&&'] + cmd1)
                             for target in targets:
@@ -93,7 +102,7 @@ def dotests():
             print('{} {} Boost {} {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg, mode))
     status("Success", success)
     status("Failure", failure)
-    print('\nTotal build {} Total success {}'.format(built, len(success)))
+    print('\nTotal targets {} Successful configurations {}'.format(built, len(success)))
     if len(failure):
         print("At least one build failed")
         sys.exit(2)
