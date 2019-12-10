@@ -11,6 +11,9 @@ MODES['clang']['libc++'] = Mode(
         '''LDFLAGS="-stdlib=libc++"''',
         '''BOOST_EXTRA_OPTS="cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++"'''
     ],
+    cmake=[
+        '''-DUSE_TAMARIND_LIBRARY=ON''',
+    ],
     boost=[
         (1, 70, 0),
         (1, 71, 0),
