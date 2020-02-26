@@ -17,6 +17,7 @@ MODES['clang']['libc++'] = Mode(
     boost=[
         (1, 70, 0),
         (1, 71, 0),
+        (1, 72, 0),
     ],
     suffix='-libc++',
 )
