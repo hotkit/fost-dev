@@ -67,7 +67,7 @@ def dotests():
                             if mode_name: tname += '-' + mode_name
                             buildpath = '/'.join([directory, 'build.tmp', tname])
                             mkpath(buildpath)
-                            cmd1 = mode_opts.env
+                            cmd1 = [] + mode_opts.env # Python is idiotic
                             cmd1 += CMAKE
                             cmd1 += ['cmake', '../..', '-G', 'Ninja']
                             cmd1 += CMAKE_POST
