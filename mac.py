@@ -4,7 +4,7 @@ from configuration import *
 platform('mac')
 
 
-TOOLSETS.remove('gcc')
+del MODES['gcc']
 
 CMAKE.append('CXXFLAGS="-I/usr/local/opt/openssl/include '
     '-L/usr/local/opt/openssl/lib '

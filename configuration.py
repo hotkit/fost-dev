@@ -26,10 +26,11 @@ MAKE = ['', 'install']
 CMAKE = []
 CMAKE_POST = ['-DSKIP_BUILD_TEST=ON']
 VARIANTS = ['debug', 'release']
-TOOLSETS = ['clang', 'gcc']
 MODES = {
     'clang': {
-       '':  Mode(),
+       '':  Mode(
+           env=['CC=clang', 'CXX=clang++'],
+        ),
     },
     'gcc': {
         '': Mode(),

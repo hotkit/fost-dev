@@ -49,7 +49,7 @@ def dotests():
         if runtests == False:
             continue
         elif runtests == True:
-            for toolset in TOOLSETS:
+            for toolset in MODES.keys():
                 for mode_name, mode_opts in MODES[toolset].items():
                     for bmajor, bminor, bpatch in mode_boost(mode_opts, BOOST):
                         for variant in VARIANTS:
@@ -67,8 +67,7 @@ def dotests():
                             if mode_name: tname += '-' + mode_name
                             buildpath = '/'.join([directory, 'build.tmp', tname])
                             mkpath(buildpath)
-                            cmd1 = ([] if toolset == 'gcc' else ['CC=clang', 'CXX=clang++'])
-                            cmd1 += mode_opts.env
+                            cmd1 = mode_opts.env
                             cmd1 += CMAKE
                             cmd1 += ['cmake', '../..', '-G', 'Ninja']
                             cmd1 += CMAKE_POST
