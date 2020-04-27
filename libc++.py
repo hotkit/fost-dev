@@ -7,6 +7,7 @@ from configuration import Mode, MODES
 ## The options specified here require clang 9 or better.
 MODES['clang']['libc++'] = Mode(
     env=[
+        '''CC=clang''', '''CXX=clang++''',
         '''CXXFLAGS="-stdlib=libc++"''',
         '''LDFLAGS="-stdlib=libc++"''',
         '''BOOST_EXTRA_OPTS="cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++"'''
