@@ -1,11 +1,10 @@
-from configuration import BOOST, MODES, platform
+from configuration import BOOST, platform, TOOLSET
 
 
 platform('focal')
-__import__('gcc-10')
-del MODES['gcc']
+TOOLSET['gcc']['env'] = ['''CC=gcc-10''', '''CXX=g++-10''']
+TOOLSET['gcc']['cmake'] = ['''-DBOOST_TOOLSET=gcc-10''']
 try:
     BOOST.remove((1,70,0))
 except ValueError:
     pass
-

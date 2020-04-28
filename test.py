@@ -49,7 +49,7 @@ def dotests():
         if runtests == False:
             continue
         elif runtests == True:
-            for toolset in MODES.keys():
+            for toolset in TOOLSET.keys():
                 for mode_name, mode_opts in MODES[toolset].items():
                     for bmajor, bminor, bpatch in mode_boost(mode_opts, BOOST):
                         for variant in VARIANTS:
@@ -67,10 +67,12 @@ def dotests():
                             if mode_name: tname += '-' + mode_name
                             buildpath = '/'.join([directory, 'build.tmp', tname])
                             mkpath(buildpath)
-                            cmd1 = [] + mode_opts.env # Python is idiotic
+                            cmd1 = [] + TOOLSET[toolset].get('env', []) # Python is idiotic
+                            cmd1 += mode_opts.env
                             cmd1 += CMAKE
                             cmd1 += ['cmake', '../..', '-G', 'Ninja']
                             cmd1 += CMAKE_POST
+                            cmd1 += TOOLSET[toolset].get('cmake', [])
                             cmd1 += mode_opts.cmake
                             conf = lambda n, v: cmd1 + ['-D' + n + '=' + v]
                             cmd1 = conf('CMAKE_BUILD_TYPE', variant.title())
