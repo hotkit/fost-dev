@@ -38,7 +38,6 @@ def dotests():
                 execute('Boost\\build', version, patch)
     def mode_boost(mode, boost):
         if not len(mode.boost): return boost
-        print mode, mode.boost, boost
         inter = set(mode.boost).intersection(set(boost))
         return [v for v in boost if v in inter]
 
