@@ -38,6 +38,7 @@ MODES = {
     'gcc': {
         '': Mode(),
     }}
+SKIP_TARGETS = set(['stress'])
 
 def is_windows():
     """

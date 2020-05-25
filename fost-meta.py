@@ -6,6 +6,5 @@ PROJECTS['fost-meta'] = dict(
         libs=['cord', 'fost-aws', 'fost-base', 'fostgres', 'fost-beanbag',
               'fost-internet', 'fost-postgres', 'fost-web', 'json-schema',
               'odin', 'makham', 'threading'],
-        make=['', 'check', 'stress', 'install'],
+        make=['', 'check', 'pgtest', 'stress', 'install'],
     )
-

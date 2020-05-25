@@ -61,7 +61,7 @@ def dotests():
                             else:
                                 bver = ''
                             failed = False
-                            targets = configuration.get('make', MAKE)
+                            targets = [t for t in configuration.get('make', MAKE) if t not in SKIP_TARGETS]
                             tname = toolset + '-' + bver + '-' + variant
                             if mode_name: tname += '-' + mode_name
                             buildpath = '/'.join([directory, 'build.tmp', tname])
@@ -98,7 +98,7 @@ def dotests():
     def status(k, l):
         print('')
         for project, boost, variant, targets, toolset, mode in l:
-            tmsg = ', '.join([t or "''" for t in targets]) if k == "Failure" else ''
+            tmsg = ', '.join([t or "''" for t in targets])
             print('{} {} Boost {} {} {} {} {}'.format(k, project, boost, toolset, variant, tmsg, mode))
     status("Success", success)
     status("Failure", failure)
